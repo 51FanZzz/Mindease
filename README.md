@@ -1,6 +1,6 @@
 # ocd_app
 
-A new Flutter project.
+An application dedicated to letting more people learn about OCD. Creating an open embrasive forum for everyone to discuss OCD, and potentially help OCD patients schedule/track their life.
 
 ## Getting Started
 
