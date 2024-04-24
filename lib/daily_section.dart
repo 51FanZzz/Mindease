@@ -6,6 +6,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:ocd_app/daily_tracker.dart';
 import 'package:ocd_app/main.dart';
 import 'package:ocd_app/profile.dart';
+import 'package:ocd_app/social_info.dart';
 
 
 // Define your IconData and Colors
@@ -56,40 +57,8 @@ class _DailySectionState extends State<DailySection> {
             ),
         ],
       ),
-      body: Column(
-        children: [
-          SizedBox(
-            height:30,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                ElevatedButton(
-                  onPressed: (){MaterialPageRoute(builder: (context)=> daily_tracker(),
-                   );
-                  }, 
-                  child: Text('Tracker'),
-                  ),
-                  ElevatedButton(
-                  onPressed: (){}, 
-                  child: Text('Routine Support'),
-                  ),
-                  ElevatedButton(
-                  onPressed: (){}, 
-                  child: Text('Progress Monitor'),
-                  ),
-                  ElevatedButton(
-                  onPressed: (){}, 
-                  child: Text('Entertainment and Relaxation'),
-                  ),
-               ],
-            ),
-          ),
-        Expanded(  
        // Show the content based on selected index
-        child: _pageContents[_selectedIndex],
-         ), 
-        ],
-       ),
+      body: _pageContents[_selectedIndex],
 
       bottomNavigationBar: Container( // bottom navigation bar setup
         color: Black,
@@ -144,7 +113,12 @@ class _DailySectionState extends State<DailySection> {
               ListTile(
                 title: Text('Profile Settings'),
                 onTap:() {
-                  // Direct to 'Profile' page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                  builder: (context) => Profile(),
+                   ),
+                  );
                 },
               ),
               SizedBox(height: largeSizedGap),
@@ -194,23 +168,81 @@ class _DailySectionState extends State<DailySection> {
 
 
 
-
-
-
     // Define your page contents for each index
   final List<Widget> _pageContents = [
     // Widgets for index 0 (Daily)
     Center(
-      child: Text('Daily Content'),
+      child:Column(
+        children: [
+          SizedBox(
+            height:30,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                ElevatedButton(
+                  onPressed: (){MaterialPageRoute(builder: (context)=> daily_tracker(),
+                   );
+                  }, 
+                  child: Text('Tracker'),
+                  ),
+                  ElevatedButton(
+                  onPressed: (){}, 
+                  child: Text('Routine Support'),
+                  ),
+                  ElevatedButton(
+                  onPressed: (){}, 
+                  child: Text('Progress Monitor'),
+                  ),
+                  ElevatedButton(
+                  onPressed: (){}, 
+                  child: Text('Entertainment and Relaxation'),
+                  ),
+               ],
+            ),
+          ),
+        ],
+       ),
     ),
     // Widgets for index 1 (Social)
     Center(
-      child: Text('Social Content'),
+      child:Column(
+        children: [
+          SizedBox(
+            height:30,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                ElevatedButton(
+                  onPressed: (){ MaterialPageRoute(builder: (context)=> social_info(),
+                   );
+                  }, 
+                  child: Text('Info'),
+                  ),
+                  ElevatedButton(
+                  onPressed: (){}, 
+                  child: Text('My Buddy'),
+                  ),
+                  ElevatedButton(
+                  onPressed: (){}, 
+                  child: Text('Community'),
+                  ),
+                  ElevatedButton(
+                  onPressed: (){}, 
+                  child: Text('Mail'),
+                  ),
+               ],
+            ),
+          ),
+        ],
+       ),
     ),
     // Widgets for index 2 (Settings)
     Center(
       child: Text('Settings Content'),
     ),
   ];
+
+
+  
 
 }
