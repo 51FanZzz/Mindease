@@ -203,7 +203,7 @@ class _DailySectionState extends State<DailySection> {
         ],
        ),
     ),
-    // Widgets for index 1 (Social)
+    // Widgets for Social
     Center(
       child:Column(
         children: [
@@ -236,9 +236,22 @@ class _DailySectionState extends State<DailySection> {
         ],
        ),
     ),
-    // Widgets for index 2 (Settings)
+    // Widgets for Settings
     Center(
-      child: Text('Settings Content'),
+      child: Column(
+        children: <Widget>[
+         TextButton(
+          onPressed: (){
+
+          },
+          child: Text('Profile'),
+          TextStyle TextStyle(
+            fontSize: 20,
+          ),
+         ),
+
+        ],
+      ),
     ),
   ];
 
