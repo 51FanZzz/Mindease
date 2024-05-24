@@ -245,9 +245,9 @@ class _DailySectionState extends State<DailySection> {
 
           },
           child: Text('Profile'),
-          TextStyle TextStyle(
-            fontSize: 20,
-          ),
+          // style: TextStyle(
+          //   fontSize: 20,
+          // ),
          ),
 
         ],

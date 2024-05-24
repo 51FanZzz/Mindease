@@ -59,13 +59,16 @@ class IntroductionPage extends StatelessWidget {
                 fontSize: 15,
                 color: White,
                ),
+
+
+               
               ),
             SizedBox(height: normalSizedGap),
 
      // 2*3 BUTTON SETUP
             GridView.count(
               shrinkWrap: true,
-              crossAxisCount: columnNum, // TODO: remove all hardcode part
+              crossAxisCount: columnNum,
               childAspectRatio: 1.0, //Aspect ratio 1:1
               physics: NeverScrollableScrollPhysics(), //Disable scrolling of the grid
               children: [

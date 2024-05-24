@@ -5,7 +5,7 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:ocd_app/StarterPage_Login.dart';
+import 'package:ocd_app/starterPage_login.dart';
 import 'package:ocd_app/introduction_page.dart';
 import 'package:ocd_app/main.dart';
 
