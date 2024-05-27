@@ -1,3 +1,5 @@
+import 'dart:js';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -180,7 +182,8 @@ class _DailySectionState extends State<DailySection> {
               scrollDirection: Axis.horizontal,
               children: [
                 ElevatedButton(
-                  onPressed: (){MaterialPageRoute(builder: (context)=> daily_tracker(),
+                  onPressed: (){
+                    MaterialPageRoute(builder: (context)=> daily_tracker(),
                    );
                   }, 
                   child: Text('Tracker'),
@@ -206,29 +209,40 @@ class _DailySectionState extends State<DailySection> {
     // Widgets for Social
     Center(
       child:Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(
             height:30,
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: [
-                ElevatedButton(
-                  onPressed: (){ MaterialPageRoute(builder: (context)=> social_info(),
+                TextButton(
+                  onPressed: (){ 
+                    MaterialPageRoute(builder: (context)=> social_info(),
                    );
                   }, 
                   child: Text('Info'),
                   ),
-                  ElevatedButton(
-                  onPressed: (){}, 
+                  SizedBox(width: normalSizedGap,),
+                  TextButton(
+                  onPressed: (){
+
+                  }, 
                   child: Text('My Buddy'),
                   ),
-                  ElevatedButton(
-                  onPressed: (){}, 
+                  SizedBox(width: normalSizedGap,),
+                  TextButton(
+                  onPressed: (){
+
+                  }, 
                   child: Text('Community'),
                   ),
-                  ElevatedButton(
-                  onPressed: (){}, 
-                  child: Text('Mail'),
+                  SizedBox(width: normalSizedGap,),
+                  TextButton(
+                  onPressed: (){
+
+                  }, 
+                  child: Text('Mail'), // TODO: Change this main next to the profile pic
                   ),
                ],
             ),
@@ -236,19 +250,43 @@ class _DailySectionState extends State<DailySection> {
         ],
        ),
     ),
-    // Widgets for Settings
+
+    // Widgets for Settings tab
     Center(
       child: Column(
-        children: <Widget>[
+        children:<Widget>[
          TextButton(
           onPressed: (){
-
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+              builder: (context)=> Profile(), // TODO: navigate to profile page( dont work??)
+            ),
+            );
+            
           },
           child: Text('Profile'),
-          // style: TextStyle(
-          //   fontSize: 20,
-          // ),
          ),
+         SizedBox(height: middleSizedGap,),
+
+         TextButton(
+          onPressed: (){
+            
+          },
+          child: Text('Common Settings'),
+         ),
+         SizedBox(height: normalSizedGap,),
+
+         TextButton(
+          onPressed:(){
+            MaterialPageRoute(
+              
+              );
+          },
+           child: Text('Notifications'),
+           ),
+           SizedBox(height: normalSizedGap,),
+
 
         ],
       ),
