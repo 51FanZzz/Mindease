@@ -8,6 +8,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:ocd_app/daily_tracker.dart';
 import 'package:ocd_app/main.dart';
 import 'package:ocd_app/profile.dart';
+import 'package:ocd_app/settings.dart';
 import 'package:ocd_app/social_info.dart';
 
 
@@ -209,7 +210,7 @@ class _DailySectionState extends State<DailySection> {
     // Widgets for Social
     Center(
       child:Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SizedBox(
             height:30,
@@ -255,38 +256,81 @@ class _DailySectionState extends State<DailySection> {
     Center(
       child: Column(
         children:<Widget>[
-         TextButton(
-          onPressed: (){
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-              builder: (context)=> Profile(), // TODO: navigate to profile page( dont work??)
-            ),
-            );
-            
-          },
-          child: Text('Profile'),
-         ),
-         SizedBox(height: middleSizedGap,),
-
-         TextButton(
-          onPressed: (){
-            
-          },
-          child: Text('Common Settings'),
-         ),
-         SizedBox(height: normalSizedGap,),
-
-         TextButton(
-          onPressed:(){
-            MaterialPageRoute(
-              
+          Builder(
+            builder: (
+              BuildContext context){
+              return TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder:(context)=>Profile()
+                    ),
+                  );
+                },
+                child: Text('Profile'),
+                );
+            },
+          ),
+          TextButton(
+            onPressed: (){
+              Navigator.push(
+                context as BuildContext,
+                MaterialPageRoute(builder: (context)=>settings(),
+                ),
               );
-          },
-           child: Text('Notifications'),
-           ),
-           SizedBox(height: normalSizedGap,),
-
+            }, 
+            child: Text('Common Settings'),
+            ),
+             TextButton(
+            onPressed: (){
+              Navigator.push(
+                context as BuildContext,
+                MaterialPageRoute(builder: (context)=>settings(),
+                ),
+              );
+            }, 
+            child: Text('Notification'),
+            ),
+             TextButton(
+            onPressed: (){
+              Navigator.push(
+                context as BuildContext,
+                MaterialPageRoute(builder: (context)=>settings(),
+                ),
+              );
+            }, 
+            child: Text('Safety & Privacy Settings'),
+            ),
+             TextButton(
+            onPressed: (){
+              Navigator.push(
+                context as BuildContext,
+                MaterialPageRoute(builder: (context)=>settings(),
+                ),
+              );
+            }, 
+            child: Text('Technical Support'),
+            ),
+             TextButton(
+            onPressed: (){
+              Navigator.push(
+                context as BuildContext,
+                MaterialPageRoute(builder: (context)=>settings(),
+                ),
+              );
+            }, 
+            child: Text('FAQ'),
+            ),
+             TextButton(
+            onPressed: (){
+              Navigator.push(
+                context as BuildContext,
+                MaterialPageRoute(builder: (context)=>settings(),
+                ),
+              );
+            }, 
+            child: Text('Contact Us'),
+            ),
 
         ],
       ),
