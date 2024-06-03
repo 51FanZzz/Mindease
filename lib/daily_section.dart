@@ -1,14 +1,8 @@
-import 'dart:js';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:ocd_app/daily_tracker.dart';
 import 'package:ocd_app/main.dart';
-import 'package:ocd_app/profile.dart';
-import 'package:ocd_app/settings.dart';
+import 'package:ocd_app/Profile.dart';
 import 'package:ocd_app/social_info.dart';
 
 
@@ -172,7 +166,7 @@ class _DailySectionState extends State<DailySection> {
 
 
     // Define your page contents for each index
-  final List<Widget> _pageContents = [
+  late final List<Widget> _pageContents = [
     // Widgets for index 0 (Daily)
     Center(
       child:Column(
@@ -271,73 +265,195 @@ class _DailySectionState extends State<DailySection> {
                 );
             },
           ),
-          TextButton(
-            onPressed: (){
-              Navigator.push(
-                context as BuildContext,
-                MaterialPageRoute(builder: (context)=>settings(),
-                ),
-              );
-            }, 
-            child: Text('Common Settings'),
+          Builder(
+            builder: (
+              BuildContext context){
+              return TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder:(context)=>Settings()
+                    ),
+                  );
+                },
+                child: Text('Common Settings'),
+                );
+               },
             ),
-             TextButton(
-            onPressed: (){
-              Navigator.push(
-                context as BuildContext,
-                MaterialPageRoute(builder: (context)=>settings(),
-                ),
-              );
-            }, 
-            child: Text('Notification'),
+            Builder(
+            builder: (
+              BuildContext context){
+              return TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder:(context)=>NotificationSettings()
+                    ),
+                  );
+                },
+                child: Text('Notification Settings'),
+                );
+               },
             ),
-             TextButton(
-            onPressed: (){
-              Navigator.push(
-                context as BuildContext,
-                MaterialPageRoute(builder: (context)=>settings(),
-                ),
-              );
-            }, 
-            child: Text('Safety & Privacy Settings'),
+            Builder(
+            builder: (
+              BuildContext context){
+              return TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder:(context)=>SafetyPrivacySettings()
+                    ),
+                  );
+                },
+                child: Text('Safety & Privacy Settings'),
+                );
+               },
             ),
-             TextButton(
-            onPressed: (){
-              Navigator.push(
-                context as BuildContext,
-                MaterialPageRoute(builder: (context)=>settings(),
-                ),
-              );
-            }, 
-            child: Text('Technical Support'),
+            Builder(
+            builder: (
+              BuildContext context){
+              return TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder:(context)=>TechnicalSupport()
+                    ),
+                  );
+                },
+                child: Text('Technical Support'),
+                );
+               },
             ),
-             TextButton(
-            onPressed: (){
-              Navigator.push(
-                context as BuildContext,
-                MaterialPageRoute(builder: (context)=>settings(),
-                ),
-              );
-            }, 
-            child: Text('FAQ'),
+            Builder(
+            builder: (
+              BuildContext context){
+              return TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder:(context)=>FAQ()
+                    ),
+                  );
+                },
+                child: Text('FAQ'),
+                );
+               },
             ),
-             TextButton(
-            onPressed: (){
-              Navigator.push(
-                context as BuildContext,
-                MaterialPageRoute(builder: (context)=>settings(),
-                ),
-              );
-            }, 
-            child: Text('Contact Us'),
+            Builder(
+            builder: (
+              BuildContext context){
+              return TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder:(context)=>ContactUs()
+                    ),
+                  );
+                },
+                child: Text('Contact Us'),
+                );
+               },
             ),
-
-        ],
-      ),
+            
+             
+            
+        ],   
+            ),
     ),
   ];
+}
 
 
-  
 
+
+
+
+
+
+
+
+class Settings extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Settings'),
+      ),
+      body: Center(
+        child: Text('Settings page.'),
+      ),
+    );
+  }}
+
+
+class NotificationSettings extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Notification Settings'),
+      ),
+      body: Center(
+        child: Text('Notification settings page.'),
+      ),
+    );
+  }
+}
+
+class SafetyPrivacySettings extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Safety & Privacy Settings'),
+      ),
+      body: Center(
+        child: Text('Safety & Privacy settings page.'),
+      ),
+    );
+  }
+}
+
+class TechnicalSupport extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Technical Support'),
+      ),
+      body: Center(
+        child: Text('Technical support page.'),
+      ),
+    );
+  }
+}
+
+class FAQ extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('FAQ'),
+      ),
+      body: Center(
+        child: Text('FAQ page.'),
+      ),
+    );
+  }
+}
+
+class ContactUs extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Contact Us'),
+      ),
+      body: Center(
+        child: Text('Contact Us page.'),
+      ),
+    );
+  }
 }
