@@ -1,17 +1,20 @@
+import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 
 import 'package:ocd_app/main.dart';
 import 'package:ocd_app/starter_page__selection.dart';
 
+final double profileImgRadius = 50;
 
-class StarterPage_Login extends StatelessWidget {
-  const StarterPage_Login({Key? key}) : super(key: key);
+class starterPage_login extends StatelessWidget {
+  const starterPage_login({Key? key}) : super(key: key);
 
   //1.login address&password
   //2. direct to symptom selection interface
 
-  final String profileImgUrl = 'https://robohash.org/?set=set4'; // TODO: allow user to replace their picture
-  final double profileImgRadius = 50;
+ 
+  
+
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +28,7 @@ class StarterPage_Login extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               SizedBox(height: normalSizedGap,),
-              CircleAvatar(
-                radius: profileImgRadius,
-                backgroundImage: NetworkImage(profileImgUrl), // can be replaced
-              ),
+              randomProfilePic(),
 
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
@@ -43,7 +43,8 @@ class StarterPage_Login extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                 child: TextFormField(
                   decoration: const InputDecoration(
-                    border: UnderlineInputBorder(),
+                    border: UnderlineInputBorder()
+                    ,
                     labelText: 'Password',
                   ),
                 ),
@@ -68,4 +69,18 @@ class StarterPage_Login extends StatelessWidget {
       ),
     );
   }
+}
+
+class randomProfilePic extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    Faker faker = Faker();
+    String profilePicUrl = faker.image.image();
+
+    return CircleAvatar(
+      radius: profileImgRadius,
+      backgroundImage: NetworkImage(profilePicUrl),
+    );
+  }
+  
 }
