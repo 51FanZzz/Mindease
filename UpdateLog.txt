@@ -1,0 +1,25 @@
+Here is the recorded updates to this app including:
+    Any updates with the UI design (UI)
+    Any updates with the application (AP)
+
+[26-3-24] [AP] 'StarterPage_Selection' created.
+[29-3-24] [AP] 'StartPage_Login' created.
+[29-3-24]       Fix some issues regarding to the connection between pages. Improved UI to make it look similiar to our concept design.
+
+[02-4-24] [AP] Improved Login input widget. A randomly generated profile pictures generated for that page.
+[04-4-24]      'IntroductionPage' created.
+[05-4-24] [UI] Adjust introduced OCD symptoms displayed on the 'IntroductionPage'.
+[05-4-24] [AP] Symptoms widgets created, adjusted their order. Tick funtion added. Detailed infomation added.
+[10-4-24] [AP] Adjust the interact way for each buttons on the 'IntroductionPage'.
+[12-4-24] [UI] Start designing alternative application design to improve UX.
+[16-4-24]      Adjust the order and the arrangements for each categories of page content.
+[18-4-24] [UI] Updated all designd interfaces with improved metods.
+[19-4-24]      Updated a side menu with short-cut navigation buttons.
+[19-4-24] [AP] Implement application into Andriod emulator and fix some display issues.
+[19-4-24]      'Daily','Social','Settings' bottom navigation bar created. Top drawer created.
+[24-4-24]      Created the top scrollable bar for all three main pages.
+[26-4-24]      Fixed the issue of displaying the same top bar for the main pages.
+[30-4-24] [AP] Add a scrollable tab on 'Daily' session including function: Tracker, Routine Support, Progress Monitor, and Entertainment&Relaxation
+
+[06-5-24] [AP] Created sub-functionatilities for 'Social' and 'Settings' 
+
