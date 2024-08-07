@@ -1,19 +1,16 @@
-# MINDEASE
 # ocd_app
 
-An application dedicated to letting more people learn about OCD. Creating an open embrasive forum for everyone to discuss OCD, and potentially help OCD patients schedule/track their life.
+A new Flutter project.
 
 ## Getting Started
 
-This project is produced collaborately by Luna Wu and Gary Yao.
+This project is a starting point for a Flutter application.
 
-This is an application developed using Flutter, prototyped by Figma, link: https://www.figma.com/proto/arDhazDa8g0DcxmegfPz2m/Mindease?node-id=610-109&t=BvuQx7yWHNW2VwwJ-1 
+A few resources to get you started if this is your first Flutter project:
 
-Mindease is dedicated to help people who suffers OCD (Obsessive-Compulsive Disorder). We are dedicated to help them to be understood by more people. 
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-It is equipped with the following functionalities:
- - Simple task management tool
- - Visualize tasks using Calender and a monitor tool in order to summeriaze their progress.
- - Fundemental meditation/therapy sessions provided
- - Build connection: Online chat with others with same issue, open forum for everyone to communicate
- - Comprehensive help seeking forum: 24/7 hotline for advices.
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
