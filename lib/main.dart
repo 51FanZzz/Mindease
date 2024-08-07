@@ -1,9 +1,9 @@
-// import 'package:english_words/english_words.dart';
-// import 'package:flutter/gestures.dart';
+
+import 'dart:async'; // Fading animation
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'StarterPage_Login.dart';
-//import 'package:google_fonts/google_fonts.dart';
 
 
 TextStyle buttonStyle = TextStyle(fontSize:25, fontWeight:FontWeight.bold);
@@ -13,6 +13,7 @@ Color Black = Colors.black;
 Color White = Colors.white;
 Color LightBlue = Colors.lightBlue;
 Color Grey = Colors.grey;
+Color BlueGrey = Colors.blueGrey.shade900;
 
 
 
@@ -56,9 +57,48 @@ class MyHomePage extends StatefulWidget { //Homepage
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
 
-  // var selectedIndex = 0; // use this to switch between pages
+class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMixin{
+  double _opacity = 0.0;
+
+  @override
+  void initState(){  // it calls _startAnimation() to kick off the animation sequence as soon as the state is initialized
+    super.initState();
+    _startAnimation();
+  }
+
+  void _startAnimation(){
+    Timer(Duration(seconds: 1), () { // a timer that waits for 1 second before executing the inner block of code
+      setState(() { 
+        _opacity = 1.0; } // making the first widget to fade in after 1s delay
+      );
+      Timer(Duration(seconds: 2), () {  //waiting for 2 seconds before the next block of code executes
+        setState(() {
+          _opacity = 0.0; // 1st widget fade out after 2s delay 
+      });
+      Timer(Duration(seconds: 1), (() {
+        setState(() {
+          _opacity = 1.0;
+        });
+
+
+
+          Timer(Duration(seconds: 1), () { 
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder:(context) => const starterPage_login()),
+            );
+          });
+
+
+
+        })
+       );
+       });
+     });
+
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -68,31 +108,29 @@ class _MyHomePageState extends State<MyHomePage> {
         child:Column(
           mainAxisAlignment: MainAxisAlignment.center,
                       children:[
-                        Stack(
-                          children: <Widget> [
-                            Text('Welcome to MINDEASE !' ,
-                                textAlign: TextAlign.center,
-                                 style:TextStyle( fontSize:45, color: White, ),
+                        AnimatedOpacity(opacity: _opacity, 
+                          duration: Duration(seconds:2),
+                          child: Text('Welcome to MINDEASE !',
+                                  textAlign: TextAlign.center,
+                                  style:TextStyle( fontSize:45, color: White,),
                                    ),
-                          ],
-                       ),  
+                                  ),
 
                         SizedBox(height:middleSizedGap),
-                        Text('Let us become your support.', 
+
+                        AnimatedOpacity(opacity: _opacity, 
+                           duration: Duration(seconds: 1),
+                           child:  Text('Let us become your support.', 
                                   style: TextStyle( fontSize:20, color: Colors.blueGrey,
                                                     fontStyle: FontStyle.italic, ),
                                   ),
-        //BUTTON SETUP
-          ElevatedButton(onPressed:(){
-                                   Navigator.push(context, 
-                                                          MaterialPageRoute(builder: (context) => const starterPage_login()),
-                                                          );
-                                          },
-          child: Text('START', style:buttonStyle), 
-                         )
-                      ]
-     )
-     )
+                        )
+
+
+                       ,
+                      ],
+        ),
+      ),
     );
   }
 }

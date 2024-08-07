@@ -1,34 +1,32 @@
-import 'package:faker/faker.dart';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 import 'package:ocd_app/main.dart';
 import 'package:ocd_app/starter_page__selection.dart';
 
-final double profileImgRadius = 50;
+const double profileImgRadius = 50;
 
 class starterPage_login extends StatelessWidget {
   const starterPage_login({Key? key}) : super(key: key);
 
   //1.login address&password
   //2. direct to symptom selection interface
-
- 
-  
-
-
   @override
   Widget build(BuildContext context) {
+
+    double topBottomPaddingBox = MediaQuery.of(context).size.height * .2;
+
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Back to last page'),
-      ),
       body: SingleChildScrollView(
         child: Center(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+
             children: <Widget>[
-              SizedBox(height: normalSizedGap,),
-              randomProfilePic(),
+              SizedBox(height: topBottomPaddingBox,),
+              RandomProfilePic(),
 
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
@@ -63,6 +61,7 @@ class starterPage_login extends StatelessWidget {
                   ),
                 ],
               ),
+              SizedBox(height: topBottomPaddingBox),
             ],
           ),
         ),
@@ -71,16 +70,37 @@ class starterPage_login extends StatelessWidget {
   }
 }
 
-class randomProfilePic extends StatelessWidget{
+class RandomProfilePic extends StatefulWidget{
+  @override
+  _RandomProfilePicState createState()=> _RandomProfilePicState();
+}
+
+class _RandomProfilePicState extends State<RandomProfilePic>{
+  late String profilePic;
+
+  @override
+  void initState(){
+    super.initState();
+   profilePic = _getRandomProfilePic();
+  }
+
+   // A list of existing pictures imported here
+   String _getRandomProfilePic(){
+    List<String> profilePics = [
+      'assets/images/profilePic1.png',
+      'assets/images/profilePic2.png',
+      'assets/images/profilePic3.png'
+    ];
+    // once during initialization, pick 1 random pic
+    profilePics.shuffle();
+    return profilePics.first;
+   }
+
   @override
   Widget build(BuildContext context) {
-    Faker faker = Faker();
-    String profilePicUrl = faker.image.image();
-
     return CircleAvatar(
       radius: profileImgRadius,
-      backgroundImage: NetworkImage(profilePicUrl),
-    );
+      backgroundImage: AssetImage(profilePic),
+    ); 
   }
-  
 }

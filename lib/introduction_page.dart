@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ocd_app/daily_section.dart';
+import 'package:ocd_app/MainSelection.dart';
 import 'package:ocd_app/main.dart';
 
 class IntroductionPage extends StatelessWidget {
@@ -118,7 +118,7 @@ class IntroductionPage extends StatelessWidget {
                   Navigator.push(
                     context,
                      MaterialPageRoute(
-                       builder: (context) => DailySection() 
+                       builder: (context) => MainSelection() 
                        ),
                       );
                 }
