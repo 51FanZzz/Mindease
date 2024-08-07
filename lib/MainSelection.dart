@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:ocd_app/DailyRoutinePage.dart';
-import 'ButtonStyles.dart';
+import 'package:ocd_app/MainSocial.dart';
 import 'package:ocd_app/DailyTrackerPage.dart';
 import 'package:ocd_app/main.dart';
 import 'package:ocd_app/Profile.dart';
-import 'package:ocd_app/social_selection.dart';
 import 'Settings.dart';
 
 
@@ -30,7 +29,7 @@ class _MainSelection extends State<MainSelection> with SingleTickerProviderState
 
   final List<Widget> _pageContents = [
     DailyTrackerPage(), // index = 0 for daily main page
-    social_selection(), // index = 1 for social main page
+    MainSocial(), // index = 1 for social main page
     Settings(),
   ];
   @override
@@ -56,29 +55,17 @@ class _MainSelection extends State<MainSelection> with SingleTickerProviderState
            _scaffoldKey.currentState?.openDrawer();
           },
         ),
-        title: SizedBox(
-          height: 48,
-          child: Column( // horizontal scrolllable bar setup
+        title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Text(
-            //   'Mindease',
-            //   style:TextStyle(fontSize: 24),
-            //   ),
-              
+            Text(
+              'Mindease',
+              style:TextStyle(fontSize: 24),
+              ),
               if(_selectedIndex == 0)
-              TabBar(
-                controller: _tabController,
-                isScrollable: true,
-                tabs: [Tab(text: 'Tracker'),
-                   Tab(text: 'Routine Support'),
-                   Tab(text: 'Progress Monitor'),
-                   Tab(text: 'Entertainment and Relaxation'),
-                       ],
-                    )       
-                ]
+                SizedBox(height: 8,),     // Add spacing between the title and TabBar
+                ],
           ),
-        ),
         actions: [ // top title content setup
           IconButton(
             onPressed: (){
@@ -92,10 +79,20 @@ class _MainSelection extends State<MainSelection> with SingleTickerProviderState
             icon: Icon(Icons.account_circle),
             ),
         ],
+        bottom: _selectedIndex == 0
+          ? TabBar(
+                controller: _tabController,
+                isScrollable: true,
+                tabs: [Tab(text: 'Tracker'),
+                      Tab(text: 'Routine Support'),
+                      Tab(text: 'Progress Monitor'),
+                      Tab(text: 'Entertainment and Relaxation'),
+                       ],
+                    )  :null,
       ),
-          body: _selectedIndex ==0
-          ? TabBarView(
-            controller: _tabController,
+      body: _selectedIndex == 0
+        ? TabBarView(
+          controller: _tabController,
             children: [
               DailyTrackerPage(),
               Center(child: Text('Routine Support Page')),
@@ -213,184 +210,122 @@ class _MainSelection extends State<MainSelection> with SingleTickerProviderState
 
 
 
-
-
-    // Define your page contents for each index
-    
-class Social_main extends StatelessWidget{
-  @override
-  Widget build(BuildContext context){
-    return  Center(
-      child:Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          SizedBox(
-            height:50,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                ElevatedButton(
-                  onPressed: (){ 
-                    MaterialPageRoute(builder: (context)=> social_selection(),
-                   );
-                  }, 
-                  style: customButtonStyle(),
-                  child: Text('My Buddy'),
-                  ),
-                  SizedBox(width: normalSizedGap,),
-                  ElevatedButton(
-                  onPressed: (){
-                    // Add Actions
-                  }, 
-                  style: customButtonStyle(),
-                  child: Text('Info'),
-                  ),
-                  SizedBox(width: normalSizedGap,),
-                  ElevatedButton(
-                  onPressed: (){
-                    // Add Action
-                  }, 
-                  style: customButtonStyle(),
-                  child: Text('Community'),
-                  ),
-                  SizedBox(width: normalSizedGap,),
-                  ElevatedButton(
-                  onPressed: (){
-                    //Add Action
-                  }, 
-                  style: customButtonStyle(),
-                  child: Text('Mail'), // TODO: Change this main next to the profile pic
-                  ),
-               ],
-            ),
-          ),
-        ],
-       ),
-    );
-
-  }
-}
-
-
-
-
-
-class Settings extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children:<Widget>[
-          Builder(
-            builder: (
-              BuildContext context){
-              return TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder:(context)=>Profile()
-                    ),
-                  );
-                },
-                child: Text('Profile'),
-                );
-            },
-          ),
-          Builder(
-            builder: (
-              BuildContext context){
-              return TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder:(context)=>Settings()
-                    ),
-                  );
-                },
-                child: Text('Common Settings'),
-                );
-               },
-            ),
-            Builder(
-            builder: (
-              BuildContext context){
-              return TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder:(context)=>NotificationSettings()
-                    ),
-                  );
-                },
-                child: Text('Notification Settings'),
-                );
-               },
-            ),
-            Builder(
-            builder: (
-              BuildContext context){
-              return TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder:(context)=>SafetyPrivacySettings()
-                    ),
-                  );
-                },
-                child: Text('Safety & Privacy Settings'),
-                );
-               },
-            ),
-            Builder(
-            builder: (
-              BuildContext context){
-              return TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder:(context)=>TechnicalSupport()
-                    ),
-                  );
-                },
-                child: Text('Technical Support'),
-                );
-               },
-            ),
-            Builder(
-            builder: (
-              BuildContext context){
-              return TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder:(context)=>FAQ()
-                    ),
-                  );
-                },
-                child: Text('FAQ'),
-                );
-               },
-            ),
-            Builder(
-            builder: (
-              BuildContext context){
-              return TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder:(context)=>ContactUs()
-                    ),
-                  );
-                },
-                child: Text('Contact Us'),
-                );
-               },
-            ),
+// class Settings extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Center(
+//       child: Column(
+//         children:<Widget>[
+//           Builder(
+//             builder: (
+//               BuildContext context){
+//               return TextButton(
+//                 onPressed: () {
+//                   Navigator.push(
+//                     context,
+//                     MaterialPageRoute(builder:(context)=>Profile()
+//                     ),
+//                   );
+//                 },
+//                 child: Text('Profile'),
+//                 );
+//             },
+//           ),
+//           Builder(
+//             builder: (
+//               BuildContext context){
+//               return TextButton(
+//                 onPressed: () {
+//                   Navigator.push(
+//                     context,
+//                     MaterialPageRoute(builder:(context)=>Settings()
+//                     ),
+//                   );
+//                 },
+//                 child: Text('Common Settings'),
+//                 );
+//                },
+//             ),
+//             Builder(
+//             builder: (
+//               BuildContext context){
+//               return TextButton(
+//                 onPressed: () {
+//                   Navigator.push(
+//                     context,
+//                     MaterialPageRoute(builder:(context)=>NotificationSettings()
+//                     ),
+//                   );
+//                 },
+//                 child: Text('Notification Settings'),
+//                 );
+//                },
+//             ),
+//             Builder(
+//             builder: (
+//               BuildContext context){
+//               return TextButton(
+//                 onPressed: () {
+//                   Navigator.push(
+//                     context,
+//                     MaterialPageRoute(builder:(context)=>SafetyPrivacySettings()
+//                     ),
+//                   );
+//                 },
+//                 child: Text('Safety & Privacy Settings'),
+//                 );
+//                },
+//             ),
+//             Builder(
+//             builder: (
+//               BuildContext context){
+//               return TextButton(
+//                 onPressed: () {
+//                   Navigator.push(
+//                     context,
+//                     MaterialPageRoute(builder:(context)=>TechnicalSupport()
+//                     ),
+//                   );
+//                 },
+//                 child: Text('Technical Support'),
+//                 );
+//                },
+//             ),
+//             Builder(
+//             builder: (
+//               BuildContext context){
+//               return TextButton(
+//                 onPressed: () {
+//                   Navigator.push(
+//                     context,
+//                     MaterialPageRoute(builder:(context)=>FAQ()
+//                     ),
+//                   );
+//                 },
+//                 child: Text('FAQ'),
+//                 );
+//                },
+//             ),
+//             Builder(
+//             builder: (
+//               BuildContext context){
+//               return TextButton(
+//                 onPressed: () {
+//                   Navigator.push(
+//                     context,
+//                     MaterialPageRoute(builder:(context)=>ContactUs()
+//                     ),
+//                   );
+//                 },
+//                 child: Text('Contact Us'),
+//                 );
+//                },
+//             ),
             
              
             
-        ],   
-            ),
-    );
-  }
-}
+//         ],   
+//             ),
+//     );
+//   }
+// }

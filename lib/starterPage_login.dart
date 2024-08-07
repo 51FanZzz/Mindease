@@ -2,9 +2,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:ocd_app/MainSelection.dart';
 
 import 'package:ocd_app/main.dart';
-import 'package:ocd_app/starter_page__selection.dart';
 
 const double profileImgRadius = 50;
 
@@ -54,7 +54,7 @@ class starterPage_login extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const StarterPage_Selection()),
+                        MaterialPageRoute(builder: (context) => MainSelection()),
                       );
                     },
                     child: Text('LOGIN', style: buttonStyle),
