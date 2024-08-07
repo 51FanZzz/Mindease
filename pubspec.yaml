@@ -6,25 +6,31 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 0.0.1+1
 
 environment:
-  sdk: '>=3.3.3 <4.0.0'
+  sdk: '>=2.19.4 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
+    
 
   english_words: ^4.0.0
   provider: ^6.0.0
-  google_nav_bar: ^5.0.6 #Google navigation bar package
-  #google_fonts: ^6.2.1
+  google_nav_bar: ^5.0.6
+  google_fonts: ^6.2.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^2.0.3
+  flutter_lints: ^2.0.0
 
 flutter:
   uses-material-design: true
+
+  assets:
+     - assets/images/profilePic1.png
+     - assets/images/profilePic2.png
+     - assets/images/profilePic3.png
 
 fonts:
     - family: Raleway
@@ -37,3 +43,4 @@ fonts:
         - asset: fonts/RobotoMono-Regular.ttf
         - asset: fonts/RobotoMono-Bold.ttf
           weight: 700
+
