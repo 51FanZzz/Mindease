@@ -2,11 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:ocd_app/ButtonStyles.dart';
 import 'package:ocd_app/main.dart';
 
-class MainSocial extends StatelessWidget{
+
+class MainSocial extends StatefulWidget{
+  @override
+  _MainSocialState createState() => _MainSocialState();
+}
+
+class _MainSocialState extends State<MainSocial>{
+ int _selectedPageIndex = 1; // Info page become the initial page
+
+ final List<Widget> _pages = [
+    SocialMyBuddyPage(),
+    SocialInfoPage(),
+    SocialCommunityPage(),
+ ];
+
   @override
   Widget build(BuildContext context){
-    return  Center(
-      child:Column(
+    return  Scaffold(
+      appBar: AppBar(
+        title: Text('Social')),
+      body:Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SizedBox(
@@ -16,39 +32,43 @@ class MainSocial extends StatelessWidget{
               children: [
                 ElevatedButton(
                   onPressed: (){ 
-                    MaterialPageRoute(builder: (context)=> MainSocial(),
-                   );
+                    setState(() {
+                      _selectedPageIndex = 0;
+                    });
                   }, 
                   style: customButtonStyle(),
                   child: Text('My Buddy'),
                   ),
+
                   SizedBox(width: normalSizedGap,),
+
                   ElevatedButton(
                   onPressed: (){
-                    // Add Actions
+                    setState(() {
+                      _selectedPageIndex = 1;
+                    });
                   }, 
                   style: customButtonStyle(),
                   child: Text('Info'),
                   ),
+
                   SizedBox(width: normalSizedGap,),
+
                   ElevatedButton(
                   onPressed: (){
-                    // Add Action
+                    setState(() {
+                      _selectedPageIndex = 2;
+                    });
                   }, 
                   style: customButtonStyle(),
                   child: Text('Community'),
                   ),
-                  SizedBox(width: normalSizedGap,),
-                  ElevatedButton(
-                  onPressed: (){
-                    //Add Action
-                  }, 
-                  style: customButtonStyle(),
-                  child: Text('Mail'), // TODO: Change this main next to the profile pic
-                  ),
                ],
             ),
           ),
+           Expanded(
+              child: _pages[_selectedPageIndex],
+              ),
         ],
        ),
     );
@@ -56,11 +76,32 @@ class MainSocial extends StatelessWidget{
   }
 }
 
+
 class SocialMyBuddyPage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Center(
-      text(Text('My Buddy')),
+      child: Text('My Buddy'),
+    );
+  }
+  
+}
+
+class SocialInfoPage extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text('Info'),
+    );
+  }
+  
+}
+
+class SocialCommunityPage extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text('My Buddy'),
     );
   }
   
