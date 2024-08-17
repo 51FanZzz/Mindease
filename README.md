@@ -1,16 +1,26 @@
-# ocd_app
+# Mindease
 
-A new Flutter project.
+This is a project based on Flutter.
 
-## Getting Started
+## What is Mindease?
 
-This project is a starting point for a Flutter application.
+Mindease dedicated to be a reliable support for people with OCD( Obsessive-Compulsive Disorder) and to help this minority to be better understood by the world.
 
-A few resources to get you started if this is your first Flutter project:
+We aim to create a relax, chilled environment where they will feel free to discuss their daily struggles.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## What can Mindease do?
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Anyone wil have access to this application where we provide a variety of tools:
+- Simple task management
+- Daily routine / habit tracker
+- Mindfulness exercise
+- Mindbuddy AI chatbot
+
+## Who is behind Mindease?
+This project's design property is jointly owned by Luna Wu and Gary Yao.
+
+Anyone who wishes to share will need to be approved by both of them.
+
+contact detail:
+Luna -> wyf2215476254@gmail.com
+Gary -> 2059581981gary@gmail.com
