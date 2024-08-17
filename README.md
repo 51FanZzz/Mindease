@@ -1,26 +1,23 @@
 # Mindease
 
-This is a project based on Flutter.
+A Flutter-based project.
 
 ## What is Mindease?
 
-Mindease dedicated to be a reliable support for people with OCD( Obsessive-Compulsive Disorder) and to help this minority to be better understood by the world.
+Mindease is dedicated to providing reliable support for individuals with Obsessive-Compulsive Disorder (OCD), helping them to be better understood by the world. Our goal is to create a relaxed and welcoming environment where users feel free to discuss their daily challenges.
 
-We aim to create a relax, chilled environment where they will feel free to discuss their daily struggles.
+## Features of Mindease
 
-## What can Mindease do?
+The application offers a variety of tools accessible to everyone:
+- Simple Task Management
+- Daily Routine/Habit Tracker
+- Mindfulness Exercises
+- Mindbuddy AI Chatbot
 
-Anyone wil have access to this application where we provide a variety of tools:
-- Simple task management
-- Daily routine / habit tracker
-- Mindfulness exercise
-- Mindbuddy AI chatbot
+## Ownership and Rights
 
-## Who is behind Mindease?
-This project's design property is jointly owned by Luna Wu and Gary Yao.
+The design property of this project is jointly owned by Luna Wu and Gary Yao. Any sharing or distribution requires approval from both owners.
 
-Anyone who wishes to share will need to be approved by both of them.
-
-contact detail:
+Contact detail:
 Luna -> wyf2215476254@gmail.com
 Gary -> 2059581981gary@gmail.com
