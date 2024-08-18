@@ -55,17 +55,10 @@ class _MainSelection extends State<MainSelection> with SingleTickerProviderState
            _scaffoldKey.currentState?.openDrawer();
           },
         ),
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
+        title: Text(
               'Mindease',
               style:TextStyle(fontSize: 24),
               ),
-              if(_selectedIndex == 0)
-                SizedBox(height: 8,),     // Add spacing between the title and TabBar
-                ],
-          ),
         actions: [ // top title content setup
           IconButton(
             onPressed: (){
@@ -80,14 +73,18 @@ class _MainSelection extends State<MainSelection> with SingleTickerProviderState
             ),
         ],
         bottom: _selectedIndex == 0
-          ? TabBar(
+          ? PreferredSize(
+            preferredSize: Size.fromHeight(24.0), 
+            child: TabBar(
                 controller: _tabController,
                 isScrollable: true,
-                tabs: [Tab(text: 'Tracker'),
+                 tabs: [
+                      Tab(text: 'Tracker'),
                       Tab(text: 'Routine Support'),
                       Tab(text: 'Progress Monitor'),
                       Tab(text: 'Entertainment and Relaxation'),
                        ],
+          ),
                     )  :null,
       ),
       body: _selectedIndex == 0
@@ -142,7 +139,6 @@ class _MainSelection extends State<MainSelection> with SingleTickerProviderState
                 accountName: Text('User Name'), // TODO: should be able to change as user change their profile on another page
                 accountEmail: Text(' '),
               currentAccountPicture: CircleAvatar(
-                
                 backgroundImage: AssetImage('assets/profile_pictures.jpg'), // Only able to shuffle from exitsing pic assets now
               ),
              ),

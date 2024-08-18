@@ -20,8 +20,6 @@ class _MainSocialState extends State<MainSocial>{
   @override
   Widget build(BuildContext context){
     return  Scaffold(
-      appBar: AppBar(
-        title: Text('Social')),
       body:Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
