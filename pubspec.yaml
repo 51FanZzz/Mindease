@@ -11,6 +11,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  
+  fl_chart: ^0.60.0
     
 
   english_words: ^4.0.0
@@ -47,4 +49,3 @@ fonts:
         - asset: fonts/RobotoMono-Regular.ttf
         - asset: fonts/RobotoMono-Bold.ttf
           weight: 700
-
