@@ -31,7 +31,11 @@ flutter:
      - assets/images/profilePic1.png
      - assets/images/profilePic2.png
      - assets/images/profilePic3.png
-
+     - assets/images/Mood_normal.png
+     - assets/images/Mood_nervous.png
+     - assets/images/Mood_stress.png
+     - assets/images/Mood_cry.png
+     
 fonts:
     - family: Raleway
       fonts:
