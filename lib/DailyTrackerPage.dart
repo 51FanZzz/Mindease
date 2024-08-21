@@ -1,4 +1,5 @@
 
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -29,7 +30,8 @@ class DailyTrackerPage extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
       ),
-      body: Column(
+      body: SingleChildScrollView(
+        child:Column(
         children: [
            Align(
             alignment: Alignment.topCenter,
@@ -127,7 +129,7 @@ class DailyTrackerPage extends StatelessWidget {
                     fontSize: widgetTitleFontSize,
                   ),
                 ),
-                SizedBox(height: 10.0,),
+                SizedBox(height: normalSizedGap),
                 Center(
                   child: 
                     SingleChildScrollView(
@@ -143,15 +145,65 @@ class DailyTrackerPage extends StatelessWidget {
                                   backgroundImage: AssetImage(moodImages[index]),
                                 ),
                               );
-                          },),
+                          },
+                        ),
                       ),
                     ),
                 )
               ],
             ),
           ),
+          // SizedBox(height: 3,),
+
+          // The Button to log the mood
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 4.0),
+            child: ElevatedButton(
+              onPressed: (){
+                
+              },
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.symmetric(horizontal: 100, vertical: 7.0),
+                backgroundColor: Blue,
+                ),
+                child: Text(
+                  'Log your mood here',
+                 style: 
+                   TextStyle(
+                    fontSize: widgetTitleFontSize,
+                    color: White,
+                  )
+                ),
+              ),
+            ),
+            SizedBox(height: 3,),
+
+            // Line chart section
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 2.0),
+              padding:  EdgeInsets.symmetric(horizontal: 120, vertical:  70),
+              decoration: BoxDecoration(
+                color: Orange,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Mood Chart',
+                  style: TextStyle(
+                    color: White,
+                    fontSize: widgetTitleFontSize,
+                  ),
+                  ),
+                  // SizedBox(height: middleSizedGap,),
+                  
+                ],
+              ),
+            ),
       ],
 
+      )
+      
     )
       
     );

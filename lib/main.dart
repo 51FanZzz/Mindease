@@ -11,10 +11,11 @@ IconData backbtn = Icons.arrow_back_rounded;
 
 Color Black = Colors.black;
 Color White = Colors.white;
+Color Blue = const Color.fromARGB(255, 49, 149, 196);
 Color LightBlue = Colors.lightBlue;
 Color Grey = Colors.grey;
 Color BlueGrey = Colors.blueGrey.shade900;
-
+Color Orange = Color.fromARGB(255, 184, 113, 90);
 
 
 const double normalSizedGap = 20;
