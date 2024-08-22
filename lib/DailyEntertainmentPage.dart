@@ -5,9 +5,6 @@ class DailyEntertainmentPage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Entertainment'),
-      ),
       body: Center(
         child: Text('Entertainment page'),
       ),

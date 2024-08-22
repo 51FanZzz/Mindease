@@ -1,5 +1,4 @@
 
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -8,7 +7,6 @@ import 'package:ocd_app/main.dart';
 class DailyTrackerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    const double widgetTitleFontSize = 17;
     
     final List<String> moodImages = [
       'assets/images/Mood_normal.png',
@@ -36,33 +34,33 @@ class DailyTrackerPage extends StatelessWidget {
            Align(
             alignment: Alignment.topCenter,
             child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0), 
-                padding: EdgeInsets.symmetric(horizontal:12.0,vertical: 12.0), // the smaller the number the thinner vertically
+                margin: EdgeInsets.symmetric(horizontal: 4.0), 
+                padding: EdgeInsets.symmetric(horizontal:12.0,vertical: 4.0), // the smaller the number the thinner vertically
                 decoration: BoxDecoration(
                   color: Grey,
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Center(
-                      child: Text(
-                        'Calendar',
+                       Text(
+                        'Jan                             2024',
                         style: TextStyle(
-                          color: White,
-                          fontSize: widgetTitleFontSize,
+                          color: BlueGrey,
+                          fontSize: widgetTitleFontSize*1.5,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                    ),
-                    SizedBox(height: 4.0,),
-                    Text(
-                    'June',
-                    style: TextStyle(
-                      color: White,
-                      fontSize: 14.0,
-                    ),
-                  ),
-                  SizedBox(height: 8.0,),
+                      SizedBox(
+                        height: 15,
+                        child: Text('--------------------------------------------------------------',
+                        style: TextStyle(
+                          color: White,
+                          fontSize: 20
+                         )
+                        ),
+                      ),
+                    
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
@@ -77,10 +75,10 @@ class DailyTrackerPage extends StatelessWidget {
                             child: Column(
                               children: [
                                 CircleAvatar(
-                                  radius: 14.0,
+                                  radius: 17.0, // Adjust the size of overall elements in this page
                                   backgroundColor: Grey,
                                   child: Text(
-                                    dateNum[index],
+                                    weekDays[index],
                                     style: TextStyle(
                                       color: Black,
                                       fontSize: 12.0,
@@ -91,10 +89,10 @@ class DailyTrackerPage extends StatelessWidget {
                                 ),
                                 SizedBox(height: 4.0),
                                 Text(
-                                  weekDays[index],
+                                  dateNum[index],
                                   style: TextStyle(
                                     color: White,
-                                    fontSize: 12.0,
+                                    fontSize: 17.0,
                                   ),
                                 ),
                              ],
@@ -111,7 +109,7 @@ class DailyTrackerPage extends StatelessWidget {
               ),
              ), 
   
-          SizedBox(height: normalSizedGap),
+          SizedBox(height: 6),
           Container(
             margin:EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
             padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 16.0),

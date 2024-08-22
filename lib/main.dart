@@ -21,6 +21,8 @@ Color Orange = Color.fromARGB(255, 184, 113, 90);
 const double normalSizedGap = 20;
 const double middleSizedGap = 25;
 const double largeSizedGap = 35;
+const double widgetTitleFontSize = 17;
+const double titleFontSize = 25;
 
 void main() {
   runApp(MyApp());

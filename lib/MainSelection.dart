@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:ocd_app/DailyMonitorPage.dart';
 import 'package:ocd_app/DailyRoutinePage.dart';
 import 'package:ocd_app/MainSocial.dart';
 import 'package:ocd_app/DailyTrackerPage.dart';
 import 'package:ocd_app/main.dart';
 import 'package:ocd_app/Profile.dart';
+import 'DailyEntertainmentPage.dart';
 import 'Settings.dart';
 
 
@@ -92,9 +94,9 @@ class _MainSelection extends State<MainSelection> with SingleTickerProviderState
           controller: _tabController,
             children: [
               DailyTrackerPage(),
-              Center(child: Text('Routine Support Page')),
-              Center(child: Text('Progress Monitor Pagelsalsl')),
-              Center(child: Text('Entertainment and Relaxation Page')),
+              DailyRoutinePage(),
+              DailyMonitorPage(),
+              DailyEntertainmentPage(),
                        ],
                     ) : _pageContents[_selectedIndex],
       bottomNavigationBar: Container( // bottom navigation bar setup
