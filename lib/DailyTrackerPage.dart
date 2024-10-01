@@ -124,7 +124,7 @@ class DailyTrackerPage extends StatelessWidget {
                     'Mood',
                     style: TextStyle(
                       color: White,
-                      fontSize: widgetTitleFontSize,
+                      fontSize: titleFontSize,
                     ),
                   ),
                   SizedBox(height: normalSizedGap),

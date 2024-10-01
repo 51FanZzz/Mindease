@@ -7,7 +7,6 @@ import 'package:ocd_app/DailyTrackerPage.dart';
 import 'styles.dart';
 import 'package:ocd_app/Profile.dart';
 import 'package:ocd_app/starterPage_login.dart';
-import 'DailyEntertainmentPage.dart';
 import 'Settings.dart';
 
 
@@ -38,7 +37,7 @@ class _MainSelection extends State<MainSelection> with SingleTickerProviderState
   @override
   void initState(){
     super.initState();
-    _tabController = TabController(length: 4, vsync: this);
+    _tabController = TabController(length: 3, vsync: this);
   }
   @override
   void dispose(){
@@ -85,7 +84,6 @@ class _MainSelection extends State<MainSelection> with SingleTickerProviderState
                       Tab(text: 'Tracker'),
                       Tab(text: 'Routine Support'),
                       Tab(text: 'Progress Monitor'),
-                      Tab(text: 'Entertainment and Relaxation'),
                        ],
           ),
                     )  :null,
@@ -97,7 +95,6 @@ class _MainSelection extends State<MainSelection> with SingleTickerProviderState
               DailyTrackerPage(),
               DailyRoutinePage(),
               DailyMonitorPage(),
-              DailyEntertainmentPage(),
                        ],
                     ) : _pageContents[_selectedIndex],
       bottomNavigationBar: Container( // bottom navigation bar setup
