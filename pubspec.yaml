@@ -1,7 +1,7 @@
 name: ocd_app
 description: A new Flutter project. Focusing on creating an app to help the public learn more about Obsessive-Compulsive Disorder(OCD)
 
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: 'none' # Remove this line if i wish to publish to pub.dev
 
 version: 0.0.1+1
 
@@ -11,34 +11,62 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  
-    
 
-  english_words: ^4.0.0
-  provider: ^6.0.0
-  google_nav_bar: ^5.0.6
-  google_fonts: ^6.2.1
+  # HTTP and other updated dependencies
+  http: any
+  collection: any
+  crypto: any
+  ffi: any
+  http_parser: any
+  leak_tracker: any
+  material_color_utilities: any
+  meta: any
+  path_provider: any
+  path_provider_android: any
+  path_provider_foundation: any
+  path_provider_windows: any
+  platform: any
+  string_scanner: 1.2.0
+  test_api: any
+  vm_service: 14.2.5
+  web: any
+  win32: any
 
+  # Other dependencies for the app
+  english_words: any
+  provider: any
+  google_nav_bar: any
+  google_fonts: any
+
+# Development dependencies
 dev_dependencies:
+  flutter_launcher_icons: any  # Launcher icons for the app
   flutter_test:
     sdk: flutter
+  flutter_lints: any
 
-  flutter_lints: ^2.0.0
+# Flutter launcher icons configuration
+flutter_icons:
+  android: true
+  ios: true  # Ensure icons are enabled for both platforms
+  image_path: "assets/icon/icon.png"
 
+# Flutter project configurations
 flutter:
   uses-material-design: true
 
+  # Ensure assets are loaded properly
   assets:
-     - assets/images/
+     - assets/images/  # Load images from this directory
      
-fonts:
+  # Fonts section for custom fonts
+  fonts:
     - family: Raleway
       fonts:
-        - asset: fonts/Raleway-Regular.ttf
-        - asset: fonts/Raleway-Italic.ttf
-          style: italic
+        - asset: assets/fonts/Raleway-Regular.ttf
+        - asset: assets/fonts/Raleway-Italic.ttf
     - family: RobotoMono
       fonts:
-        - asset: fonts/RobotoMono-Regular.ttf
-        - asset: fonts/RobotoMono-Bold.ttf
+        - asset: assets/fonts/RobotoMono-Regular.ttf
+        - asset: assets/fonts/RobotoMono-Italic.ttf
           weight: 700

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ocd_app/MainSelection.dart';
-import 'package:ocd_app/main.dart';
+import 'styles.dart';
 
 class IntroductionPage extends StatelessWidget {
   const IntroductionPage ({super.key});

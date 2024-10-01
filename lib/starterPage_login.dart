@@ -1,12 +1,12 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:ocd_app/MainSelection.dart';
 
-import 'package:ocd_app/main.dart';
+import 'styles.dart';
 
 const double profileImgRadius = 50;
+
+
 
 class starterPage_login extends StatelessWidget {
   const starterPage_login({Key? key}) : super(key: key);
@@ -72,6 +72,7 @@ class starterPage_login extends StatelessWidget {
 
 class RandomProfilePic extends StatefulWidget{
   @override
+  // ignore: library_private_types_in_public_api
   _RandomProfilePicState createState()=> _RandomProfilePicState();
 }
 
@@ -84,7 +85,21 @@ class _RandomProfilePicState extends State<RandomProfilePic>{
    profilePic = _getRandomProfilePic();
   }
 
-   // A list of existing pictures imported here
+  
+  @override
+  Widget build(BuildContext context) {
+    return CircleAvatar(
+      radius: profileImgRadius,
+      backgroundImage: AssetImage(profilePic),
+    ); 
+  }
+}
+
+
+
+
+
+ // A list of existing pictures imported here
    String _getRandomProfilePic(){
     List<String> profilePics = [
       'assets/images/profilePic1.png',
@@ -95,12 +110,3 @@ class _RandomProfilePicState extends State<RandomProfilePic>{
     profilePics.shuffle();
     return profilePics.first;
    }
-
-  @override
-  Widget build(BuildContext context) {
-    return CircleAvatar(
-      radius: profileImgRadius,
-      backgroundImage: AssetImage(profilePic),
-    ); 
-  }
-}

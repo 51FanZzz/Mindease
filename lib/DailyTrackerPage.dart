@@ -1,13 +1,9 @@
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:ocd_app/main.dart';
+import 'styles.dart';
 
 class DailyTrackerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    
     final List<String> moodImages = [
       'assets/images/Mood_normal.png',
       'assets/images/Mood_nervous.png',
@@ -16,26 +12,31 @@ class DailyTrackerPage extends StatelessWidget {
     ];
 
     final List<String> weekDays = [
-      'Mon','Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'
+      'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'
     ];
 
-    final List<String> dateNum = [ 
-      '1','2','3','4','5','6','7'
+    final List<String> dateNum = [
+      '1', '2', '3', '4', '5', '6', '7'
     ];
-    
+
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
-        child:Column(
-        children: [
-           Align(
-            alignment: Alignment.topCenter,
-            child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 4.0), 
-                padding: EdgeInsets.symmetric(horizontal:12.0,vertical: 4.0), // the smaller the number the thinner vertically
+        child: Column(
+          children: [
+            Align(
+              alignment: Alignment.topCenter,
+              child: Container(
+                margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.01),
+                padding: EdgeInsets.symmetric(
+                  horizontal: screenWidth * 0.03,
+                  vertical: screenHeight * 0.01,
+                ), // Adjusted based on screen size
                 decoration: BoxDecoration(
                   color: Grey,
                   borderRadius: BorderRadius.circular(8.0),
@@ -43,143 +44,138 @@ class DailyTrackerPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                       Text(
-                        'Jan                             2024',
-                        style: TextStyle(
-                          color: BlueGrey,
-                          fontSize: widgetTitleFontSize*1.5,
-                          fontWeight: FontWeight.bold,
-                        ),
+                    Text(
+                      'Jan                             2024',
+                      style: TextStyle(
+                        color: BlueGrey,
+                        fontSize: widgetTitleFontSize * 1.5,
+                        fontWeight: FontWeight.bold,
                       ),
-                      SizedBox(
-                        height: 15,
-                        child: Text('--------------------------------------------------------------',
+                    ),
+                    SizedBox(
+                      height: screenHeight * 0.02,
+                      child: Text(
+                        '--------------------------------------------------------------',
                         style: TextStyle(
                           color: White,
-                          fontSize: 20
-                         )
+                          fontSize: 20,
                         ),
                       ),
-                    
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: List.generate(weekDays.length, (index) {
-                        return GestureDetector(
-                          onTap: () {
-                            // Handle the click interaction of click
-
-                          },
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 4.0),
-                            child: Column(
-                              children: [
-                                CircleAvatar(
-                                  radius: 17.0, // Adjust the size of overall elements in this page
-                                  backgroundColor: Grey,
-                                  child: Text(
-                                    weekDays[index],
-                                    style: TextStyle(
-                                      color: Black,
-                                      fontSize: 12.0,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                                SizedBox(height: 4.0),
-                                Text(
-                                  dateNum[index],
-                                  style: TextStyle(
-                                    color: White,
-                                    fontSize: 17.0,
-                                  ),
-                                ),
-                             ],
-                            ),
-                            ),
-                        );
-                       },
-                      )
-                     
                     ),
-                  )
-                  ],
-                ),
-              ),
-             ), 
-  
-          SizedBox(height: 6),
-          Container(
-            margin:EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
-            padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 16.0),
-            decoration: BoxDecoration(
-              color: BlueGrey,
-              borderRadius: BorderRadius.circular(8.0),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Mood',
-                style: 
-                  TextStyle(
-                    color: White,
-                    fontSize: widgetTitleFontSize,
-                  ),
-                ),
-                SizedBox(height: normalSizedGap),
-                Center(
-                  child: 
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
-                        children: List.generate(
-                          moodImages.length, (index) {
-                            return Padding(
+                        children: List.generate(weekDays.length, (index) {
+                          return GestureDetector(
+                            onTap: () {
+                              // Handle the click interaction
+                            },
+                            child: Padding(
                               padding: EdgeInsets.symmetric(
-                                horizontal: 6.0),
-                                child: CircleAvatar(
-                                  radius: 35.0,
-                                  backgroundImage: AssetImage(moodImages[index]),
-                                ),
-                              );
-                          },
-                        ),
+                                  horizontal: screenWidth * 0.01),
+                              child: Column(
+                                children: [
+                                  CircleAvatar(
+                                    radius: screenWidth * 0.045,
+                                    backgroundColor: Grey,
+                                    child: Text(
+                                      weekDays[index],
+                                      style: TextStyle(
+                                        color: Black,
+                                        fontSize: screenWidth * 0.03,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                  SizedBox(height: screenHeight * 0.005),
+                                  Text(
+                                    dateNum[index],
+                                    style: TextStyle(
+                                      color: White,
+                                      fontSize: screenWidth * 0.045,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        }),
                       ),
                     ),
-                )
-              ],
-            ),
-          ),
-          // SizedBox(height: 3,),
-
-          // The Button to log the mood
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 4.0),
-            child: ElevatedButton(
-              onPressed: (){
-                
-              },
-              style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.symmetric(horizontal: 100, vertical: 7.0),
-                backgroundColor: Blue,
-                ),
-                child: Text(
-                  'Log your mood here',
-                 style: 
-                   TextStyle(
-                    fontSize: widgetTitleFontSize,
-                    color: White,
-                  )
+                  ],
                 ),
               ),
             ),
-            SizedBox(height: 3,),
-
-            // Line chart section
+            SizedBox(height: screenHeight * 0.01),
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 2.0),
-              padding:  EdgeInsets.symmetric(horizontal: 120, vertical:  70),
+              margin: EdgeInsets.symmetric(
+                  horizontal: screenWidth * 0.01, vertical: screenHeight * 0.01),
+              padding: EdgeInsets.symmetric(
+                  horizontal: screenWidth * 0.03, vertical: screenHeight * 0.02),
+              decoration: BoxDecoration(
+                color: BlueGrey,
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Mood',
+                    style: TextStyle(
+                      color: White,
+                      fontSize: widgetTitleFontSize,
+                    ),
+                  ),
+                  SizedBox(height: normalSizedGap),
+                  Center(
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: List.generate(moodImages.length, (index) {
+                          return Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: screenWidth * 0.02),
+                            child: CircleAvatar(
+                              radius: screenWidth * 0.09,
+                              backgroundImage: AssetImage(moodImages[index]),
+                            ),
+                          );
+                        }),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            SizedBox(height: screenHeight * 0.01),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.01),
+              child: ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: screenWidth * 0.25,
+                    vertical: screenHeight * 0.015,
+                  ),
+                  backgroundColor: Blue,
+                ),
+                child: Text(
+                  'Log your mood here',
+                  style: TextStyle(
+                    fontSize: widgetTitleFontSize,
+                    color: White,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: screenHeight * 0.01),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.01),
+              padding: EdgeInsets.symmetric(
+                horizontal: screenWidth * 0.3,
+                vertical: screenHeight * 0.1,
+              ),
               decoration: BoxDecoration(
                 color: Orange,
                 borderRadius: BorderRadius.circular(8),
@@ -187,24 +183,20 @@ class DailyTrackerPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Mood Chart',
-                  style: TextStyle(
-                    color: White,
-                    fontSize: widgetTitleFontSize,
+                  Text(
+                    'Mood Chart',
+                    style: TextStyle(
+                      color: White,
+                      fontSize: widgetTitleFontSize,
+                    ),
                   ),
-                  ),
-                  // SizedBox(height: middleSizedGap,),
-                  
+                  // Add more content for the Mood Chart here
                 ],
               ),
             ),
-      ],
-
-      )
-      
-    )
-      
+          ],
+        ),
+      ),
     );
-      
   }
 }

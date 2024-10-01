@@ -4,8 +4,9 @@ import 'package:ocd_app/DailyMonitorPage.dart';
 import 'package:ocd_app/DailyRoutinePage.dart';
 import 'package:ocd_app/MainSocial.dart';
 import 'package:ocd_app/DailyTrackerPage.dart';
-import 'package:ocd_app/main.dart';
+import 'styles.dart';
 import 'package:ocd_app/Profile.dart';
+import 'package:ocd_app/starterPage_login.dart';
 import 'DailyEntertainmentPage.dart';
 import 'Settings.dart';
 
@@ -141,7 +142,7 @@ class _MainSelection extends State<MainSelection> with SingleTickerProviderState
                 accountName: Text('User Name'), // TODO: should be able to change as user change their profile on another page
                 accountEmail: Text(' '),
               currentAccountPicture: CircleAvatar(
-                backgroundImage: AssetImage('assets/profile_pictures.jpg'), // Only able to shuffle from exitsing pic assets now
+                 child: RandomProfilePic(), // Only able to shuffle from exitsing pic assets now
               ),
              ),
               Expanded(

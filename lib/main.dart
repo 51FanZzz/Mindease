@@ -4,25 +4,9 @@ import 'dart:async'; // Fading animation
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'StarterPage_Login.dart';
+import 'styles.dart';
 
 
-TextStyle buttonStyle = TextStyle(fontSize:25, fontWeight:FontWeight.bold);
-IconData backbtn = Icons.arrow_back_rounded;
-
-Color Black = Colors.black;
-Color White = Colors.white;
-Color Blue = const Color.fromARGB(255, 49, 149, 196);
-Color LightBlue = Colors.lightBlue;
-Color Grey = Colors.grey;
-Color BlueGrey = Colors.blueGrey.shade900;
-Color Orange = Color.fromARGB(255, 184, 113, 90);
-
-
-const double normalSizedGap = 20;
-const double middleSizedGap = 25;
-const double largeSizedGap = 35;
-const double widgetTitleFontSize = 17;
-const double titleFontSize = 25;
 
 void main() {
   runApp(MyApp());

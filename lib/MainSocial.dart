@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ocd_app/ButtonStyles.dart';
-import 'package:ocd_app/main.dart';
+import 'package:ocd_app/styles.dart';
+import 'styles.dart';
 
 
 class MainSocial extends StatefulWidget{
