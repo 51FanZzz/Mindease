@@ -2,10 +2,9 @@
 import 'dart:async'; // Fading animation
 
 import 'package:flutter/material.dart';
+import 'package:mindease_app/styles.dart';
 import 'package:provider/provider.dart';
 import 'StarterPage_Login.dart';
-import 'styles.dart';
-
 
 
 void main() {
@@ -20,23 +19,71 @@ class MyApp extends StatelessWidget {
     const title = 'Mindease';
 
     return ChangeNotifierProvider(
-      create: (context) => MyAppState(),
-      child: MaterialApp(
-        title: title,
-        theme: ThemeData(
-          useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(seedColor: LightBlue,
-                                            brightness: Brightness.dark),
-        ),
-        home: MyHomePage(),
+      create: (_) => MyAppState(),
+      child: Consumer<MyAppState>( // Consumer is for dynamically change of theme
+        builder: (context, appState, child) {
+          return MaterialApp(
+            title: title,
+
+
+        theme: appState.isSocialInfoPageSelected
+        ? ThemeData.light().copyWith(
+          scaffoldBackgroundColor: DarkBlue, // light theme on SocialInfoPage
+          appBarTheme: AppBarTheme(
+            foregroundColor: White,
+            backgroundColor: DarkBlue, // App Bar color for socialInfoPage
           ),
-        );
+          textTheme: TextTheme(
+                      bodyLarge: TextStyle(color: Black), // Set text color 
+                      bodyMedium: TextStyle(color: Black), 
+                    ),
+           elevatedButtonTheme: ElevatedButtonThemeData(
+                      style: ElevatedButton.styleFrom(
+                        // foregroundColor: White, // Set button text color
+                        backgroundColor: DarkBlue, // Set button background color
+                      ),
+                    ),
+                  )
+
+            // When isSocialInfoPage is not selected
+                : ThemeData.dark().copyWith(
+                  scaffoldBackgroundColor: Black,  // default dark bg color
+                  appBarTheme: AppBarTheme(
+                    backgroundColor: Black, // AppBar color for other pages other than SocialInfoPage
+                  ),
+                  textTheme: TextTheme(
+                     bodyLarge: TextStyle(color: LightBlue), // Set text color to white in dark mode
+                     bodyMedium: TextStyle(color: LightBlue), 
+                  ),
+                  elevatedButtonTheme: ElevatedButtonThemeData(
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: LightBlue,
+                        backgroundColor: DarkBlue,
+                      ),
+                    ),
+                ), // <-- Default dark theme for other pages
+            home: MyHomePage(),
+          );
+        },
+      ),
+    );
   }
 }
 
-class MyAppState extends ChangeNotifier { // app state management class
-    
+class MyAppState extends ChangeNotifier {
+  bool isSocialInfoPageSelected = false;
+
+  void selectSocialInfoPage() {
+    isSocialInfoPageSelected = true;
+    notifyListeners();
+  }
+
+  void deselectSocialInfoPage() {
+    isSocialInfoPageSelected = false;
+    notifyListeners();
+  }
 }
+
 
 class MyHomePage extends StatefulWidget { //Homepage
                                           // manage every interfaces, connect them
@@ -46,44 +93,44 @@ class MyHomePage extends StatefulWidget { //Homepage
 
 
 class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMixin{
-  double _opacity = 0.0;
+  late AnimationController _controller;
+  late Animation<double> _animation;
+
 
   @override
-  void initState(){  // it calls _startAnimation() to kick off the animation sequence as soon as the state is initialized
+  void initState() {
     super.initState();
-    _startAnimation();
+
+    _controller = AnimationController(
+      duration: const Duration(seconds: 5), // Total duration of the animation
+      vsync: this,
+    );
+
+    _animation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.easeInOut,
+      ),
+    );
+
+    _controller.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        Timer(Duration(seconds: 1), () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const starterPage_login()),
+          );
+        });
+      }
+    });
+
+    _controller.forward();
   }
 
-  void _startAnimation(){
-    Timer(Duration(seconds: 1), () { // a timer that waits for 1 second before executing the inner block of code
-      setState(() { 
-        _opacity = 1.0; } // making the first widget to fade in after 1s delay
-      );
-      Timer(Duration(seconds: 2), () {  //waiting for 2 seconds before the next block of code executes
-        setState(() {
-          _opacity = 0.0; // 1st widget fade out after 2s delay 
-      });
-      Timer(Duration(seconds: 1), (() {
-        setState(() {
-          _opacity = 1.0;
-        });
-
-
-
-          Timer(Duration(seconds: 1), () { 
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder:(context) => const starterPage_login()),
-            );
-          });
-
-
-
-        })
-       );
-       });
-     });
-
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
 
@@ -95,26 +142,35 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
         child:Column(
           mainAxisAlignment: MainAxisAlignment.center,
                       children:[
-                        AnimatedOpacity(opacity: _opacity, 
-                          duration: Duration(seconds:2),
-                          child: Text('Welcome to MINDEASE !',
+                        AnimatedBuilder(
+                          animation: _animation, 
+                          builder:(context, child){
+                            return Opacity(
+                              opacity: _animation.value,
+                              child: Text('Welcome to MINDEASE !',
                                   textAlign: TextAlign.center,
                                   style:TextStyle( fontSize:45, color: White,),
                                    ),
+                              );
+                          },
+                          
                                   ),
 
                         SizedBox(height:middleSizedGap),
 
-                        AnimatedOpacity(opacity: _opacity, 
-                           duration: Duration(seconds: 1),
-                           child:  Text('Let us become your support.', 
+                        AnimatedBuilder(
+                          animation: _animation, 
+                          builder:(context, child){
+                            return Opacity(
+                              opacity: _animation.value,
+                              child:  Text('Let us become your support.', 
                                   style: TextStyle( fontSize:20, color: Colors.blueGrey,
                                                     fontStyle: FontStyle.italic, ),
                                   ),
-                        )
-
-
-                       ,
+                              );
+                          },
+                          
+                                  ),
                       ],
         ),
       ),

@@ -23,12 +23,11 @@ class DailyTrackerPage extends StatelessWidget {
     double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-      ),
+     
       body: SingleChildScrollView(
         child: Column(
           children: [
+            SizedBox(height: 30,),
             Align(
               alignment: Alignment.topCenter,
               child: Container(

@@ -1,17 +1,20 @@
 // ignore_for_file: non_constant_identifier_names
 import 'package:flutter/material.dart';
-import 'package:ocd_app/main.dart';
 
-TextStyle buttonStyle = TextStyle(fontSize:25, fontWeight:FontWeight.bold);
-IconData backbtn = Icons.arrow_back_rounded;
+TextStyle buttonStyle = TextStyle(fontSize:25, fontWeight:FontWeight.bold, color: White);
+
+IconData backBtn = Icons.arrow_back_rounded;
+IconData profileBtn = Icons.account_circle;
 
 Color Black = Colors.black;
 Color White = Colors.white;
-Color Blue = const Color.fromARGB(255, 49, 149, 196);
-Color LightBlue = Colors.lightBlue;
+Color Blue =  Color.fromARGB(255, 25, 95, 199);
+Color LightBlue = Color(0xFF4A5B87);
+Color DarkBlue =  Color(0xFF091C44);
 Color Grey = Colors.grey;
 Color BlueGrey = Colors.blueGrey.shade900;
 Color Orange = Color.fromARGB(255, 184, 113, 90);
+Color LightWhiteCover =  Color(0xFF4A5B87);
 
 
 const double normalSizedGap = 20;
@@ -63,3 +66,9 @@ class TextStyles{
   );
 }
 
+class SettingsTextStyle{
+  static const TextStyle settingsTextButton = TextStyle(
+    color: Colors.white,
+    fontSize: 20,
+  );
+}

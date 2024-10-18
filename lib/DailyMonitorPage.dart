@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:ocd_app/styles.dart';
+import 'package:mindease_app/main.dart';
+import 'package:mindease_app/styles.dart';
+import 'package:provider/provider.dart';
 
-class DailyMonitorPage extends StatelessWidget {
+class DailyMonitorPage extends StatefulWidget {
+  @override
+  _DailyMonitorPageState createState() => _DailyMonitorPageState();
+}
+
+class _DailyMonitorPageState extends State<DailyMonitorPage> {
+  String selectedHabit = 'Exercised'; // Default selected habit
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -13,7 +23,7 @@ class DailyMonitorPage extends StatelessWidget {
             Text(
               'Habit Tracker',
               style: TextStyle(
-                color: Colors.white,
+                color: White,
                 fontSize: 20.0,
                 fontWeight: FontWeight.bold,
               ),
@@ -22,12 +32,12 @@ class DailyMonitorPage extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(16.0),
               decoration: BoxDecoration(
-                color: Colors.grey[800], // Dark grey background like in the image
+                color: Colors.grey[800], // Dark grey background
                 borderRadius: BorderRadius.circular(8.0),
               ),
               height: 200,
               child: CustomPaint(
-                painter: GraphPainter(), // This will draw the graph
+                painter: GraphPainter(selectedHabit), // Pass the selected habit to the painter
                 child: Container(),
               ),
             ),
@@ -37,63 +47,105 @@ class DailyMonitorPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 _buildLegendDot(Colors.red, 'Exercised'),
-                SizedBox(height: 5,),
+                SizedBox(height: 5),
                 _buildLegendDot(Colors.blue, 'Drank 1L water'),
-                SizedBox(height: 5,),
+                SizedBox(height: 5),
                 _buildLegendDot(Colors.green, 'Meditated'),
+                SizedBox(height: 5),
+                _buildLegendDot(Colors.white, 'Sleep before 12AM'),
+                SizedBox(height: 5),
+                _buildLegendDot(Colors.brown, 'Had a lovely day'),
               ],
+            ),
+            SizedBox(height: 20.0), // Space between dots and button
+            // Dark blue button
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  // Deselect SocialInfoPage and reset the theme to dark
+                     Provider.of<MyAppState>(context, listen: false).deselectSocialInfoPage();
+                  // Button press action
+                },
+                style: ElevatedButton.styleFrom(
+                 backgroundColor: BlueGrey, // Dark blue color
+                  padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                ),
+                child: Text(
+                  'Record your data here !',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
             ),
           ],
         ),
-      ),
-      backgroundColor: Colors.transparent, // Dark background for the page
+      ), // Dark background for the page
     );
   }
 
   // Function to build the legend with colored dots and label
   Widget _buildLegendDot(Color color, String label) {
-    return Row(
-      children: [
-        Container(
-          width: 20,
-          height: 20,
-          decoration: BoxDecoration(
-            color: color,
-            shape: BoxShape.circle,
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          selectedHabit = label; // Update the selected habit on tap
+        });
+      },
+      child: Row(
+        children: [
+          Container(
+            width: 20,
+            height: 20,
+            decoration: BoxDecoration(
+              color: color,
+              shape: BoxShape.circle,
+            ),
           ),
-        ),
-        SizedBox(width: 12),
-        Text(
-          label,
-          style: TextStyle(color: White),
-        ),
-      ],
+          SizedBox(width: 12),
+          Text(
+            label,
+            style: TextStyle(color: Colors.white),
+          ),
+        ],
+      ),
     );
   }
 }
 
-// Custom Painter to draw the graph
+// Custom Painter to draw the graph based on selected habit
 class GraphPainter extends CustomPainter {
+  final String selectedHabit;
+
+  GraphPainter(this.selectedHabit);
+
   @override
   void paint(Canvas canvas, Size size) {
     Paint linePaint = Paint()
       ..color = Colors.grey
       ..strokeWidth = 2;
 
-    Paint dataPaint1 = Paint()
-      ..color = Colors.red
+    Paint dataPaint = Paint()
       ..strokeWidth = 3
       ..style = PaintingStyle.stroke;
 
-    Paint dataPaint2 = Paint()
-      ..color = Colors.blue
-      ..strokeWidth = 3
-      ..style = PaintingStyle.stroke;
-
-    Paint dataPaint3 = Paint()
-      ..color = Colors.green
-      ..strokeWidth = 3
-      ..style = PaintingStyle.stroke;
+    // Set color based on selected habit
+    if (selectedHabit == 'Exercised') {
+      dataPaint.color = Colors.red;
+    } else if (selectedHabit == 'Drank 1L water') {
+      dataPaint.color = Colors.blue;
+    } else if (selectedHabit == 'Meditated') {
+      dataPaint.color = Colors.green;
+    } else if (selectedHabit == 'Sleep before 12AM') {
+      dataPaint.color = Colors.white;
+    } else if (selectedHabit == 'Had a lovely day') {
+      dataPaint.color = Colors.brown;
+    }
 
     // Draw background grid lines (horizontal)
     for (int i = 0; i < 5; i++) {
@@ -101,39 +153,51 @@ class GraphPainter extends CustomPainter {
       canvas.drawLine(Offset(0, dy), Offset(size.width, dy), linePaint);
     }
 
-    // Placeholder data points (just for illustration)
-    Path dataPath1 = Path();
-    dataPath1.moveTo(0, size.height * 0.8);
-    dataPath1.lineTo(size.width * 0.2, size.height * 0.6);
-    dataPath1.lineTo(size.width * 0.4, size.height * 0.4);
-    dataPath1.lineTo(size.width * 0.6, size.height * 0.5);
-    dataPath1.lineTo(size.width * 0.8, size.height * 0.3);
-    dataPath1.lineTo(size.width, size.height * 0.6);
+    // Placeholder data points for each habit
+    Path dataPath = Path();
+    if (selectedHabit == 'Exercised') {
+      dataPath.moveTo(0, size.height * 0.8);
+      dataPath.lineTo(size.width * 0.2, size.height * 0.6);
+      dataPath.lineTo(size.width * 0.4, size.height * 0.4);
+      dataPath.lineTo(size.width * 0.6, size.height * 0.5);
+      dataPath.lineTo(size.width * 0.8, size.height * 0.3);
+      dataPath.lineTo(size.width, size.height * 0.6);
+    } else if (selectedHabit == 'Drank 1L water') {
+      dataPath.moveTo(0, size.height * 0.6);
+      dataPath.lineTo(size.width * 0.2, size.height * 0.5);
+      dataPath.lineTo(size.width * 0.4, size.height * 0.7);
+      dataPath.lineTo(size.width * 0.6, size.height * 0.4);
+      dataPath.lineTo(size.width * 0.8, size.height * 0.2);
+      dataPath.lineTo(size.width, size.height * 0.4);
+    } else if (selectedHabit == 'Meditated') {
+      dataPath.moveTo(0, size.height * 0.7);
+      dataPath.lineTo(size.width * 0.2, size.height * 0.9);
+      dataPath.lineTo(size.width * 0.4, size.height * 0.5);
+      dataPath.lineTo(size.width * 0.6, size.height * 0.3);
+      dataPath.lineTo(size.width * 0.8, size.height * 0.4);
+      dataPath.lineTo(size.width, size.height * 0.6);
+    } else if (selectedHabit == 'Sleep before 12AM') {
+      dataPath.moveTo(0, size.height * 0.4);
+      dataPath.lineTo(size.width * 0.2, size.height * 0.3);
+      dataPath.lineTo(size.width * 0.4, size.height * 0.5);
+      dataPath.lineTo(size.width * 0.6, size.height * 0.7);
+      dataPath.lineTo(size.width * 0.8, size.height * 0.4);
+      dataPath.lineTo(size.width, size.height * 0.6);
+    } else if (selectedHabit == 'Had a lovely day') {
+      dataPath.moveTo(0, size.height * 0.5);
+      dataPath.lineTo(size.width * 0.2, size.height * 0.4);
+      dataPath.lineTo(size.width * 0.4, size.height * 0.6);
+      dataPath.lineTo(size.width * 0.6, size.height * 0.8);
+      dataPath.lineTo(size.width * 0.8, size.height * 0.5);
+      dataPath.lineTo(size.width, size.height * 0.3);
+    }
 
-    Path dataPath2 = Path();
-    dataPath2.moveTo(0, size.height * 0.6);
-    dataPath2.lineTo(size.width * 0.2, size.height * 0.5);
-    dataPath2.lineTo(size.width * 0.4, size.height * 0.7);
-    dataPath2.lineTo(size.width * 0.6, size.height * 0.4);
-    dataPath2.lineTo(size.width * 0.8, size.height * 0.2);
-    dataPath2.lineTo(size.width, size.height * 0.4);
-
-    Path dataPath3 = Path();
-    dataPath3.moveTo(0, size.height * 0.7);
-    dataPath3.lineTo(size.width * 0.2, size.height * 0.9);
-    dataPath3.lineTo(size.width * 0.4, size.height * 0.5);
-    dataPath3.lineTo(size.width * 0.6, size.height * 0.3);
-    dataPath3.lineTo(size.width * 0.8, size.height * 0.4);
-    dataPath3.lineTo(size.width, size.height * 0.6);
-
-    // Draw the data lines
-    canvas.drawPath(dataPath1, dataPaint1);
-    canvas.drawPath(dataPath2, dataPaint2);
-    canvas.drawPath(dataPath3, dataPaint3);
+    // Draw the data line for the selected habit
+    canvas.drawPath(dataPath, dataPaint);
   }
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return false;
+    return true; // Repaint when the selected habit changes
   }
 }

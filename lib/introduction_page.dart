@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ocd_app/MainSelection.dart';
+import 'package:mindease_app/MainSelection.dart';
 import 'styles.dart';
 
 class IntroductionPage extends StatelessWidget {
@@ -35,7 +35,7 @@ class IntroductionPage extends StatelessWidget {
       appBar: AppBar( 
         // BACK BUTTON SETUP
           leading: IconButton(
-            icon: Icon(backbtn),
+            icon: Icon(backBtn),
           onPressed:(){
             Navigator.pop(context);
           },

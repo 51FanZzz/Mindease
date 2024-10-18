@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:ocd_app/MainSelection.dart';
+import 'package:mindease_app/MainSelection.dart';
 
 import 'styles.dart';
 
@@ -57,7 +57,9 @@ class starterPage_login extends StatelessWidget {
                         MaterialPageRoute(builder: (context) => MainSelection()),
                       );
                     },
-                    child: Text('LOGIN', style: buttonStyle),
+                    child: Text('LOGIN', 
+                           style: buttonStyle,
+                               ),
                   ),
                 ],
               ),

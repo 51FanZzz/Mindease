@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:ocd_app/styles.dart';
-import 'styles.dart';
+import 'package:mindease_app/SocialInfoPage.dart';
+import 'package:mindease_app/main.dart';
+import 'package:mindease_app/styles.dart';
+import 'package:provider/provider.dart';
+
 
 
 class MainSocial extends StatefulWidget{
@@ -24,9 +27,10 @@ class _MainSocialState extends State<MainSocial>{
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SizedBox(
-            height:50,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
+            height:29,
+            child: Center(
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
               children: [
                 ElevatedButton(
                   onPressed: (){ 
@@ -35,10 +39,11 @@ class _MainSocialState extends State<MainSocial>{
                     });
                   }, 
                   style: customButtonStyle(),
-                  child: Text('My Buddy'),
+                  child: Text('My Buddy', 
+                            style: TextStyle(fontSize: 17),),
                   ),
 
-                  SizedBox(width: normalSizedGap,),
+                  SizedBox(width: 10,),
 
                   ElevatedButton(
                   onPressed: (){
@@ -47,10 +52,11 @@ class _MainSocialState extends State<MainSocial>{
                     });
                   }, 
                   style: customButtonStyle(),
-                  child: Text('Info'),
+                  child: Text('Info',
+                      style: TextStyle(fontSize: 17),),
                   ),
 
-                  SizedBox(width: normalSizedGap,),
+                  SizedBox(width: 10,),
 
                   ElevatedButton(
                   onPressed: (){
@@ -59,11 +65,13 @@ class _MainSocialState extends State<MainSocial>{
                     });
                   }, 
                   style: customButtonStyle(),
-                  child: Text('Community'),
+                  child: Text('Community',
+                      style: TextStyle(fontSize: 17),),
                   ),
-               ],
+                 ],
+               ), 
+              ),
             ),
-          ),
            Expanded(
               child: _pages[_selectedPageIndex],
               ),
@@ -79,17 +87,9 @@ class SocialMyBuddyPage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('My Buddy'),
-    );
-  }
-  
-}
-
-class SocialInfoPage extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text('Info'),
+      child: Text('My Buddy', 
+      style: TextStyle( color: White)
+      ),
     );
   }
   
@@ -99,7 +99,9 @@ class SocialCommunityPage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('My Buddy'),
+      child: Text('Community Page',
+      style: TextStyle( color: White)
+      ),
     );
   }
   

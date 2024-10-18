@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:ocd_app/DailyMonitorPage.dart';
-import 'package:ocd_app/DailyRoutinePage.dart';
-import 'package:ocd_app/MainSocial.dart';
-import 'package:ocd_app/DailyTrackerPage.dart';
+import 'package:mindease_app/DailyMonitorPage.dart';
+import 'package:mindease_app/DailyRoutinePage.dart';
+import 'package:mindease_app/MainSocial.dart';
+import 'package:mindease_app/DailyTrackerPage.dart';
+import 'package:mindease_app/main.dart';
+import 'package:provider/provider.dart';
 import 'styles.dart';
-import 'package:ocd_app/Profile.dart';
-import 'package:ocd_app/starterPage_login.dart';
+import 'package:mindease_app/Profile.dart';
+import 'package:mindease_app/starterPage_login.dart';
 import 'Settings.dart';
 
-
-// Define your IconData and Colors
 IconData menuBtn = Icons.menu_rounded;
 
 class MainSelection extends StatefulWidget {
@@ -18,100 +18,118 @@ class MainSelection extends StatefulWidget {
   State<MainSelection> createState() => _MainSelection();
 }
 
-
-
-
-
-class _MainSelection extends State<MainSelection> with SingleTickerProviderStateMixin{
-  int _selectedIndex = 0; // Track the selected index
-
-  //Define global key to allow drawer to access Scaffold where its located in higher hirecary
+class _MainSelection extends State<MainSelection>
+    with SingleTickerProviderStateMixin {
+  int _selectedIndex = 0;
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   late TabController _tabController;
 
   final List<Widget> _pageContents = [
-    DailyTrackerPage(), // index = 0 for daily main page
-    MainSocial(), // index = 1 for social main page
+    DailyTrackerPage(),
+    MainSocial(),
     Settings(),
   ];
+
   @override
-  void initState(){
+  void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
   }
+
   @override
-  void dispose(){
+  void dispose() {
     _tabController.dispose();
     super.dispose();
   }
 
+  void _updateThemeBasedOnPage(int index) {
+    final appState = Provider.of<MyAppState>(context, listen: false);
+    if (index == 1) {
+      appState.selectSocialInfoPage();
+    } else {
+      appState.deselectSocialInfoPage();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    final appState = Provider.of<MyAppState>(context);
+
     return Scaffold(
       key: _scaffoldKey,
+      backgroundColor: appState.isSocialInfoPageSelected ? DarkBlue : Black,
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(menuBtn),
-          onPressed: () {
-           _scaffoldKey.currentState?.openDrawer();
-          },
+        backgroundColor: appState.isSocialInfoPageSelected ? DarkBlue : Black,
+        leading: Builder(
+          builder: (context) => IconButton(
+            icon: Icon(menuBtn),
+            color: White,
+            onPressed: () {
+              _scaffoldKey.currentState?.openDrawer();
+            },
+          ),
         ),
         title: Text(
-              'Mindease',
-              style:TextStyle(fontSize: 24),
-              ),
-        actions: [ // top title content setup
+          'Mindease',
+          style: TextStyle(fontSize: 24, color: White),
+        ),
+        actions: [
           IconButton(
-            onPressed: (){
-               Navigator.push( 
-                context, 
+            onPressed: () async {
+              appState.deselectSocialInfoPage();
+              await Navigator.push(
+                context,
                 MaterialPageRoute(
-                  builder: (context) => Profile() 
-                 ), 
-              ); 
-            }, 
-            icon: Icon(Icons.account_circle),
-            ),
+                  builder: (context) => Profile()
+                  ),
+              );
+              // Update the theme based on the current page when returning
+              _updateThemeBasedOnPage(_selectedIndex);
+            },
+            icon: Icon(Icons.person),
+            color: White,
+          ),
         ],
         bottom: _selectedIndex == 0
-          ? PreferredSize(
-            preferredSize: Size.fromHeight(24.0), 
-            child: TabBar(
-                controller: _tabController,
-                isScrollable: true,
-                 tabs: [
-                      Tab(text: 'Tracker'),
-                      Tab(text: 'Routine Support'),
-                      Tab(text: 'Progress Monitor'),
-                       ],
-          ),
-                    )  :null,
+            ? PreferredSize(
+                preferredSize: Size.fromHeight(24.0),
+                child: TabBar(
+                  controller: _tabController,
+                  isScrollable: true,
+                  tabs: [
+                    Tab(text: 'Tracker'),
+                    Tab(text: 'Routine Support'),
+                    Tab(text: 'Progress Monitor'),
+                  ],
+                ),
+              )
+            : null,
       ),
       body: _selectedIndex == 0
-        ? TabBarView(
-          controller: _tabController,
-            children: [
-              DailyTrackerPage(),
-              DailyRoutinePage(),
-              DailyMonitorPage(),
-                       ],
-                    ) : _pageContents[_selectedIndex],
-      bottomNavigationBar: Container( // bottom navigation bar setup
-        color: Black,
+          ? TabBarView(
+              controller: _tabController,
+              children: [
+                DailyTrackerPage(),
+                DailyRoutinePage(),
+                DailyMonitorPage(),
+              ],
+            )
+          : _pageContents[_selectedIndex],
+      bottomNavigationBar: Container(
+        color: appState.isSocialInfoPageSelected ? DarkBlue : Black,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: GNav(
-            backgroundColor: Black,
+            backgroundColor: appState.isSocialInfoPageSelected ? DarkBlue : Black,
             color: Grey,
             activeColor: White,
             tabBackgroundColor: BlueGrey,
-            gap: 30, // the gap between the icon and the text
+            gap: 30,
             onTabChange: (index) {
               setState(() {
-                _selectedIndex = index; // Update the selected index
-              }
-             );
+                _selectedIndex = index;
+                _updateThemeBasedOnPage(index);
+              });
             },
             padding: EdgeInsets.all(16),
             tabs: const [
@@ -133,195 +151,82 @@ class _MainSelection extends State<MainSelection> with SingleTickerProviderState
       ),
       drawer: Drawer(
         child: SafeArea(
-          child:Column(
+          child: Column(
             children: <Widget>[
               UserAccountsDrawerHeader(
-                accountName: Text('User Name'), // TODO: should be able to change as user change their profile on another page
-                accountEmail: Text(' '),
-              currentAccountPicture: CircleAvatar(
-                 child: RandomProfilePic(), // Only able to shuffle from exitsing pic assets now
+                accountName: Text(
+                  'User Name',
+                  style: TextStyle(
+                    color: White,
+                    fontSize: widgetTitleFontSize,
+                  ),
+                ),
+                accountEmail: Text(''),
+                currentAccountPicture: CircleAvatar(
+                  child: RandomProfilePic(),
+                ),
+                decoration: BoxDecoration(
+                  color: Black,
+                ),
               ),
-             ),
               Expanded(
-              child: ListView(
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              ListTile(
-                title: Text('Profile Settings'),
-                onTap:() {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                  builder: (context) => Profile(),
-                   ),
-                  );
-                },
+                child: ListView(
+                  padding: EdgeInsets.zero,
+                  children: <Widget>[
+                    ListTile(
+                      title: Text('Profile Settings'),
+                      onTap: () {
+                        appState.deselectSocialInfoPage();
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Profile()),
+                        ).then((value) => _updateThemeBasedOnPage(_selectedIndex));
+                      },
+                    ),
+                    SizedBox(height: largeSizedGap),
+                    ListTile(
+                      title: Text('Notification'),
+                      onTap: () {
+                        // Direct to Settings?
+                      },
+                    ),
+                    ListTile(
+                      title: Text('Favourite'),
+                      onTap: () {
+                        // Direct to Favourite
+                      },
+                    ),
+                    ListTile(
+                      title: Text('My Buddy'),
+                      onTap: () {
+                        // Direct to 'MyBuddyPage'
+                      },
+                    ),
+                    ListTile(
+                      title: Text('Therapy Session'),
+                      onTap: () {
+                        // Direct to therapyPage
+                      },
+                    ),
+                    SizedBox(height: largeSizedGap),
+                    ListTile(
+                      title: Text('Contact us!'),
+                      onTap: () {
+                        // Direct to Contact page?
+                      },
+                    ),
+                  ],
+                ),
               ),
-              SizedBox(height: largeSizedGap),
-              ListTile(
-                title: Text('Notification'),
-                onTap:() {
-                  // Direct to Settings?
-                },
-              ),
-              ListTile(
-                title: Text('Favourite'),
-                onTap:() {
-                  // Direct to 
-                },
-              ),
-              ListTile(
-                title: Text('My Buddy'),
-                onTap:() {
-                  // direct to 'MyBuddyPage'
-                },
-              ),
-              ListTile(
-                title: Text('Therapy Session'),
-                onTap:() {
-                  // Direct to therapyPage
-                },
-              ),
-              SizedBox(height: largeSizedGap),
-              ListTile(
-                title: Text('Contact us !'),
-                onTap:() {
-                  // Direct to Contact page?
-                },
-              ),
-
-            // Add more lists of items here
-             ],
-            ),
-           ),
-          ],
+            ],
+          ),
         ),
-       ),
       ),
+      onDrawerChanged: (isOpen) {
+        if (!isOpen) {
+          _updateThemeBasedOnPage(_selectedIndex);
+        }
+      },
     );
   }
 }
-
-
-
-
-
-// class Settings extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Center(
-//       child: Column(
-//         children:<Widget>[
-//           Builder(
-//             builder: (
-//               BuildContext context){
-//               return TextButton(
-//                 onPressed: () {
-//                   Navigator.push(
-//                     context,
-//                     MaterialPageRoute(builder:(context)=>Profile()
-//                     ),
-//                   );
-//                 },
-//                 child: Text('Profile'),
-//                 );
-//             },
-//           ),
-//           Builder(
-//             builder: (
-//               BuildContext context){
-//               return TextButton(
-//                 onPressed: () {
-//                   Navigator.push(
-//                     context,
-//                     MaterialPageRoute(builder:(context)=>Settings()
-//                     ),
-//                   );
-//                 },
-//                 child: Text('Common Settings'),
-//                 );
-//                },
-//             ),
-//             Builder(
-//             builder: (
-//               BuildContext context){
-//               return TextButton(
-//                 onPressed: () {
-//                   Navigator.push(
-//                     context,
-//                     MaterialPageRoute(builder:(context)=>NotificationSettings()
-//                     ),
-//                   );
-//                 },
-//                 child: Text('Notification Settings'),
-//                 );
-//                },
-//             ),
-//             Builder(
-//             builder: (
-//               BuildContext context){
-//               return TextButton(
-//                 onPressed: () {
-//                   Navigator.push(
-//                     context,
-//                     MaterialPageRoute(builder:(context)=>SafetyPrivacySettings()
-//                     ),
-//                   );
-//                 },
-//                 child: Text('Safety & Privacy Settings'),
-//                 );
-//                },
-//             ),
-//             Builder(
-//             builder: (
-//               BuildContext context){
-//               return TextButton(
-//                 onPressed: () {
-//                   Navigator.push(
-//                     context,
-//                     MaterialPageRoute(builder:(context)=>TechnicalSupport()
-//                     ),
-//                   );
-//                 },
-//                 child: Text('Technical Support'),
-//                 );
-//                },
-//             ),
-//             Builder(
-//             builder: (
-//               BuildContext context){
-//               return TextButton(
-//                 onPressed: () {
-//                   Navigator.push(
-//                     context,
-//                     MaterialPageRoute(builder:(context)=>FAQ()
-//                     ),
-//                   );
-//                 },
-//                 child: Text('FAQ'),
-//                 );
-//                },
-//             ),
-//             Builder(
-//             builder: (
-//               BuildContext context){
-//               return TextButton(
-//                 onPressed: () {
-//                   Navigator.push(
-//                     context,
-//                     MaterialPageRoute(builder:(context)=>ContactUs()
-//                     ),
-//                   );
-//                 },
-//                 child: Text('Contact Us'),
-//                 );
-//                },
-//             ),
-            
-             
-            
-//         ],   
-//             ),
-//     );
-//   }
-// }
