@@ -72,6 +72,13 @@ class _MainSocialState extends State<MainSocial> {
   }
 }
 
+
+
+
+
+
+
+
 class SocialMyBuddyPage extends StatefulWidget {
   @override
   _SocialMyBuddyPageState createState() => _SocialMyBuddyPageState();
@@ -288,6 +295,12 @@ class _SocialMyBuddyPageState extends State<SocialMyBuddyPage> {
     );
   }
 }
+
+
+
+
+
+
 
 
 
