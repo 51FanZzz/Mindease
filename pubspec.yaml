@@ -28,7 +28,7 @@ dependencies:
   platform: any
   string_scanner: 1.2.0
   test_api: any
-  vm_service: 14.2.5
+  vm_service: ^13.0.0
   web: any
   win32: any
 
