@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mindease_app/starterPage_login.dart';
+import 'starterPage_login.dart';
 
 class Profile extends StatelessWidget {
   @override

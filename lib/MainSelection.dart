@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:mindease_app/DailyMonitorPage.dart';
-import 'package:mindease_app/DailyRoutinePage.dart';
-import 'package:mindease_app/MainSocial.dart';
-import 'package:mindease_app/DailyTrackerPage.dart';
-import 'package:mindease_app/main.dart';
+import 'DailyMonitorPage.dart';
+import 'DailyRoutinePage.dart';
+import 'MainSocial.dart';
+import 'DailyTrackerPage.dart';
+import 'main.dart';
 import 'package:provider/provider.dart';
 import 'styles.dart';
-import 'package:mindease_app/Profile.dart';
-import 'package:mindease_app/starterPage_login.dart';
+import 'Profile.dart';
+import 'starterPage_login.dart';
 import 'Settings.dart';
 
 IconData menuBtn = Icons.menu_rounded;

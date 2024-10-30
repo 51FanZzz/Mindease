@@ -2,7 +2,7 @@
 import 'dart:async'; // Fading animation
 
 import 'package:flutter/material.dart';
-import 'package:mindease_app/styles.dart';
+import 'styles.dart';
 import 'package:provider/provider.dart';
 import 'StarterPage_Login.dart';
 

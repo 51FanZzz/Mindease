@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mindease_app/MainSelection.dart';
+import 'MainSelection.dart';
 import 'styles.dart';
 
 class IntroductionPage extends StatelessWidget {

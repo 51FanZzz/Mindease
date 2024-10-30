@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mindease_app/Profile.dart';
-import 'package:mindease_app/main.dart';
-import 'package:mindease_app/styles.dart';
+import 'Profile.dart';
+import 'main.dart';
+import 'styles.dart';
 import 'package:provider/provider.dart';
 
 class Settings extends StatelessWidget {

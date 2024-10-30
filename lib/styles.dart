@@ -15,6 +15,7 @@ Color Grey = Colors.grey;
 Color BlueGrey = Colors.blueGrey.shade900;
 Color Orange = Color.fromARGB(255, 184, 113, 90);
 Color LightWhiteCover =  Color(0xFF4A5B87);
+Color LightBlueGrey = Color.fromARGB(217, 125, 146, 169);
 
 
 const double normalSizedGap = 20;
